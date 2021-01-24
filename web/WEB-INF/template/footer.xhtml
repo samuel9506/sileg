@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+ 
+    <ui:composition>
+   <aside class="control-sidebar control-sidebar-dark text-right" style="height: 15%;">
+            <div class="p-3">
+                <i class="far fa-user"></i>
+                <h:form >  
+                    <h:commandLink action="#{usuarioSesion.cerraSesion()}" class="btn-btn primary" value="cerrar sesion" ></h:commandLink>
+                </h:form>
+             
+
+            </div>
+        </aside>
+  <!-- /.MENU CIERRE DE SESION -->
+  <!-- /.WRAPPER -->
+  <!-- FOOTER -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="float-right d-none d-sm-inline">
+      <a target="blank" href="https://www.facebook.com/licoresElgatoEC"><i class="fab fa-facebook"></i></a>
+    </div>
+    <strong> SISTEMA INFORMACIÓN LICORES EL GATO</strong>
+  </footer>
+        
+    </ui:composition>
+</html>
+

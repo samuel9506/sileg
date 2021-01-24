@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+
+        <title>SILEG | ADMIN</title>
+
+
+
+        <!-- Font Awesome Icons -->
+        <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css"/>
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../dist/css/adminlte.min.css"/>
+        <!-- Google Font: Source Roboto  font-family: 'Roboto', sans-serif; font-family:'RobotoMono'monospace; -->
+
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </h:head>
+
+    <h:body class="hold-transition sidebar-mini">
+        <div class="wrapper">
+
+            <ui:insert name="header">
+                <ui:include src="header.xhtml"></ui:include>
+            </ui:insert>
+
+
+            <ui:insert name="menuvertical">
+                <ui:include src="menuvertical.xhtml"></ui:include>
+            </ui:insert>
+
+            <ui:insert name="areatrabajo">
+                <ui:include src="areatrabajo.xhtml"></ui:include>
+            </ui:insert>
+
+
+            <ui:insert name="footer">
+                <ui:include src="footer.xhtml"></ui:include>
+            </ui:insert>
+        </div>
+
+
+        <script src="../plugins/jquery/jquery.min.js"></script>
+       
+        <script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        
+        <script src="../dist/js/adminlte.min.js"></script>
+
+
+
+    </h:body>
+
+
+</html>

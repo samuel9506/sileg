@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+   
+    
+    <ui:composition>
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- LOGO Y NOMBRE DEL SISTEMA-->
+            <a href="#" class="brand-link">
+                <img src="../img/beer.png" alt="SILEG Logo" class="brand-image img-circle elevation-3" style="opacity: .8"/>
+                    <span class="brand-text font-weight-light">SILEG</span>
+            </a>
+
+            <!-- MENU DE OPCIONES DE LOS MODULOS -->
+            <div class="sidebar">
+                <!-- LOGO NOMBRE USUARIO Y RELOJ -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="../img/bri.jpg" class="img-circle elevation-2" alt="User Image"/>
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block"></a>
+                        <p class="text-center" style="font-family: Roboto; color: white;" >#{usuarioSesion.usuLogin.fkRol.nombre}</p>
+                    </div>
+                </div>
+                <!-- LOGO NOMBRE USUARIO Y RELOJ -->
+                <!-- SELECCION POR MODULO -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                      with font-awesome or any other icon font library -->
+                        <li class="nav-item has-treeview menu-open">
+                            <a href="#" class="nav-link active">
+                                <p>
+                                    Modulos
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="../Administrador/index.xhtml" class="nav-link">
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="../Ventas/index.xhtml" class="nav-link">
+                                        <p>Ventas</p>
+                                    </a>
+                                </li>
+                                
+                                
+                                <li class="nav-item">
+                                    <a href="../inventarios/index.xhtml" class="nav-link">
+                                        <p>Inventarios</p>
+                                    </a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                    <a href="usuarios.html" class="nav-link">
+                                        <p>Usuarios</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="reportes.html" class="nav-link">
+                                        <p>Reportes</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <!-- /.SELECCION POR MODULO -->
+            </div>
+            <!-- /.MENU DE OPCIONES DE LOS MODULOS -->
+        </aside>
+    </ui:composition>
+</html>
+
