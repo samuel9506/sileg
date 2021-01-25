@@ -245,7 +245,138 @@
 
             </div>
         </div>
+           <div class="content-wrapper">
+                <!-- CONTENIDO HEADER SECCION PRINCIPAL-->
+                <div class="content-header">
+                    <h1>Categorias</h1>
+                </div>
+                <!-- /.CONTENIDO HEADER SECCION PRINCIPAL -->
 
+                <!-- SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+                <div class="content">
+                    <div class="container-fluid">
+                        <!--CONTENIDO QUE SE SOBRE ESCRIBE EN CADA PAGINA......-->
+                        <div class="content"> 
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <h2 id="tabla-categorias"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categorías de Producto</font></font></h2>
+                                            </div>
+                                            <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
+                                                <a class="btn btn-success mr-2 btn-sm" href="#" data-toggle="modal" data-target="#registro-categoria"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva categoría</font></font></a>
+                                                <!-- SEARCH FORM -->
+                                                <form class="form-inline">
+                                                    <div class="input-group input-group-sm">
+                                                        <input class="form-control form-control-navbar" type="search" placeholder="Buscar fuera" aria-label="buscar"/>
+                                                        <div class="input-group-append">
+                                                            <button style="background-color: rgb(207, 207, 207);" class="btn btn-navbar" type="submit">
+                                                                <i class="fas fa-search"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body">
+                                        <table class="table table-bordered table-hover">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th>categoría de identificación</th>
+                                                    <th>nombre de la categoría</th>
+                                                    <th>cambios</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="#{categoriaProRequest.listaCategorias}" var="categoria" >
+                                                <tr>
+                                                    <td> #{categoria.idcategoriasProductos} </td>
+                                                    <td> #{categoria.nombre}</td>
+                                                    <td>
+                                                        <div class="d-flex justify-content-around">
+                                                            <h:form>
+                                                            <h:commandButton value="Eliminar" class="btn btn-danger" action="#{categoriaProRequest.eliminarCategoria(categoria)}"></h:commandButton>
+                                                            <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#editar-categoria"  >
+                                                                <f:ajax execute="@this" event="click" listener="#{categoriaProRequest.editarCategoria(categoria)}" render="editar"></f:ajax>
+                                                            </h:commandButton>
+                                                            </h:form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                               </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                </div>
+                            </div>
+                        </div>
+                        <!--/tabla categorias -->
+                    </div>
+                </div>
+                <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+            </div>
+            <!--Modal registrar una categoria-->
+            <div class="container">
+                <div class="row">
+                    <div class="modal fade" id="registro-categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Registro Categoria</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <h:form>
+                                    <div class="modal-body">
+                                        <h:outputLabel for="crear" value="Categoria"></h:outputLabel>
+                                        <h:inputText id="crear"  value="#{categoriaProRequest.categoria.nombre}" ></h:inputText>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <h:commandButton class="btn btn-secondary" value="Crear" action="#{categoriaProRequest.crearProducto()}" ></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!--Modal para editar una categoria-->
+            <div class="container">
+                <div class="row">
+                    <div class="modal fade" id="editar-categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Editar categoria</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <h:form id="editar">
+                                    <h:inputHidden value="#{categoriaProRequest.categoriaEditar.idcategoriasProductos}"></h:inputHidden>
+                                    <div class="modal-body">
+                                        <h:outputLabel for="editar" value="Categoria"></h:outputLabel>
+                                        <h:inputText id="editar"  value="#{categoriaProRequest.categoriaEditar.nombre}" ></h:inputText>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <h:commandButton class="btn btn-secondary" value="Modificar" action="#{categoriaProRequest.actualizarCategoria()}" ></h:commandButton>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
 
 
 
