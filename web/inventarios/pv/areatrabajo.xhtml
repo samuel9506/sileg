@@ -29,15 +29,9 @@
                                             <h2 id="tabla-categorias">Lista de productos </h2>
                                         </div>
                                         <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-p" href="#">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-p">
                                                 crear producto
                                             </button>
-                                            <br/>
-                                            <br/>
-                                            <h:form>
-                                                <h:commandButton value="Reportes" class="btn btn-warning" action="#{productosView.descargaListado()}" ></h:commandButton>
-                                            </h:form>
-
                                         </div>
                                     </div>
                                 </div>
@@ -46,42 +40,39 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>Nombre</th>
-                                                <th>Presentacion</th>
+                                                <th>id productos</th>
+                                                <th>nombre producto</th>
                                                 <th>categoria</th>
                                                 <th>Stock</th>
-                                                <th>precioVenta</th>
-                                                <th>Fecha venc</th>
-                                                <th>precioCompra</th>
-                                                <th>Puntos</th>
-
+                                                <th>presentacion</th>
+                                                <th>precio compra</th>
+                                                <th>precio venta</th>
+                                                <th>fecha vencimiento</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
-                                            <c:forEach items="#{productosView.listaProductos()}" var="pro" >
+                                            <c:forEach items="#{productosRequest.listaProductos}" var="pro" >
                                                 <tr>
+                                                    <td>#{pro.idproductos}</td>
                                                     <td>#{pro.nombreProducto}</td>
+                                                    <td>#{pro.idcategoriasProductos.nombre}</td>
+                                                    <td>#{pro.stockActual}</td>
                                                     <td>#{pro.presentacion}</td>
-                                                    <td>#{pro.fkCategoria.nombre}</td>
-                                                    <td>#{pro.existencias}</td>
+                                                    <td>#{pro.precioCompra}</td>
                                                     <td>#{pro.precioVenta}</td>
-                                                    <td>#{pro.fechavenc}</td>
-                                                    <td>#{pro.fechacompra}</td>
-                                                    <td>#{pro.puntos}</td>
-                                                    <td> 
+                                                    <td>#{pro.fechaVenc}</td>
+                                                    <td>
                                                         <div class="d-flex justify-content-around">
                                                             <h:form>
-                                                                <h:commandButton value="Eliminar" class="btn btn-danger" action="#{productosView.eliminarProducto(pro)}" ></h:commandButton> 
+                                                                <h:commandButton value="Eliminar" class="btn btn-danger" action="#{productosRequest.eliminarProducto(pro)}" ></h:commandButton>
                                                                 <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#editar-p"  >
-                                                                    <f:ajax execute="@this" event="click"  render="actualizar-p" listener="#{productosView.editar(pro)}"></f:ajax>
-                                                                </h:commandButton> 
+                                                                    <f:ajax execute="@this" event="click"  render="actualizar-p" listener="#{productosRequest.editar(pro)}"></f:ajax>
+                                                                </h:commandButton>
                                                             </h:form>
                                                         </div>
                                                     </td>
                                                 </tr>
                                             </c:forEach>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -92,8 +83,7 @@
                     <!--/tabla categorias -->
                 </div>
             </div>
-
-
+            <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
         </div>
         <!--Modal registrar una producto-->
         <div class="container">
@@ -105,89 +95,55 @@
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true"></span>
+                                    <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <h:form>
                                 <div class="modal-body">
-                                    <h:selectOneMenu id="idCat" value="#{productosView.id_categoria}" class="form-control">
-                                        <f:selectItems itemLabel="#{cat.nombre}" itemValue="#{cat.idcategoria}" value="#{categoriasView.listaCategorias}" var="cat"></f:selectItems>
-                                    </h:selectOneMenu>
 
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="nombre" value="#{productosView.regProductos.nombreProducto}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel for="Presentacion" value="Presentacion"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="prv" value="#{productosView.regProductos.presentacion}"  ></h:inputText>
+                                        <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}"  ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosView.regProductos.existencias}" ></h:inputText>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <h:outputLabel for="precio" value="precio compra"></h:outputLabel>
-                                        <h:inputText class="form-control" id="precio" value="#{productosView.regProductos.precioCompra}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.stockActual}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel for="fecha" value="fecha compra"></h:outputLabel>
-                                        <h:inputText class="form-control" id="fecha" value="#{productosView.regProductos.fechacompra}" >
+                                        <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.producto.presentacion}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.producto.precioCompra}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.producto.fechaVenc}" >
                                             <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
                                         </h:inputText>
                                     </div>
-                                    <div class="form-group">
-                                        <h:outputLabel for="fechav" value="fecha vencimiento"></h:outputLabel>
-                                        <h:inputText class="form-control" id="fechav" value="#{productosView.regProductos.fechavenc}" >
-                                            <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
-                                        </h:inputText>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-
-                                            <div class="project-wrapper">
-                                                <div class="project">
-                                                    <div class="photo-wrapper">
-                                                        <div class="photo">
-                                                            <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
-
-                                                                <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
-
-                                                            </a>
-                                                        </div>
-                                                        <div class="overlay"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6" style="text-align: center;">
-                                            <h:inputFile id="cargaImagen" style="display: none"  onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}"  >
-
-                                            </h:inputFile>
-                                            <h:commandButton id="btnCargaImagen"  style="display: none" action="#{categoriasView.accion(productosView.id_categoria)}" >
-                                                <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
-                                            </h:commandButton>
-
-                                            <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
-                                        </div>
-
-                                    </div>
-
+                                    <h:selectOneMenu class="form-control" value="#{productosRequest.idCategoria}">
+                                        <f:selectItem itemLabel="Seleccione una categoria..." itemValue="null"></f:selectItem>
+                                        <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
+                                    </h:selectOneMenu>
                                 </div>
 
                                 <div class="modal-footer">
-                                    <h:commandButton action="#{productosView.registrarProductos()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
+                                    <h:commandButton action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
                                 </div>
                             </h:form>     
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
-
-        <!--Modal para editar un proveedor-->
+        <!--Modal para editar un producto-->
         <div class="container">
             <div class="row">
 
@@ -195,49 +151,54 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Actualizar Producto</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <h:form id="actualizar-p">
+                            <h:form id="actualizar-p" >
                                 <div class="modal-body">
-                                    <h:inputHidden value="#{productosView.productoEditar.idproductos}"></h:inputHidden>
+                                    <h:inputHidden value="#{productosRequest.productoEditar.idproductos}"></h:inputHidden>
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="nombre" value="#{productosView.productoEditar.nombreProducto}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.productoEditar.nombreProducto}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="prv" value="#{productosView.productoEditar.precioVenta}"  ></h:inputText>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.productoEditar.precioVenta}"  ></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel for="stk" value="Precio Compra"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosView.productoEditar.precioCompra}" ></h:inputText>
+                                        <h:outputLabel for="stk" value="stock"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.productoEditar.stockActual}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
-                                        <h:inputText class="form-control" id="pres" value="#{productosView.productoEditar.presentacion}" ></h:inputText>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.productoEditar.presentacion}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel for="exis" value="Existencias"></h:outputLabel>
-                                        <h:inputText class="form-control" id="exis" value="#{productosView.productoEditar.existencias}" ></h:inputText>
+                                        <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.productoEditar.precioCompra}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
-                                        <h:outputLabel for="fecha" value="fecha compra"></h:outputLabel>
-                                        <h:inputText class="form-control" id="fecha" value="#{productosView.productoEditar.fechacompra}" >
+                                        <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.productoEditar.fechaVenc}" >
                                             <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
                                         </h:inputText>
                                     </div>
-                                    <h:selectOneMenu class="form-control" value="#{productosView.idcategoria}">
+                                    <h:selectOneMenu class="form-control" value="#{productosRequest.idCategoria}" >
+                                        <f:ajax event="change" listener="#{productosRequest.prueba()}"  render="actualizar-p"></f:ajax>
                                         <f:selectItem itemLabel="Seleccione una categoria..." itemValue="null"></f:selectItem>
-                                        <f:selectItems  value="#{productosView.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoria}" ></f:selectItems>
+                                        <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
                                     </h:selectOneMenu>
-
                                 </div>
 
-                                <h:commandButton action="#{productosView.actualizarProducto()}" value="Actualizar producto" class="btn btn-secondary" ></h:commandButton>
+                                <div class="modal-footer">
+                                    <c:if test="#{productosRequest.idCategoria != null}" >
+                                        <h:commandButton action="#{productosRequest.actualizarProducto()}" value="Actualizar producto" class="btn btn-secondary" ></h:commandButton>
+                                    </c:if>
 
+                                    
+                                </div>
                             </h:form>     
                         </div>
                     </div>
@@ -245,138 +206,141 @@
 
             </div>
         </div>
-           <div class="content-wrapper">
-                <!-- CONTENIDO HEADER SECCION PRINCIPAL-->
-                <div class="content-header">
-                    <h1>Categorias</h1>
-                </div>
-                <!-- /.CONTENIDO HEADER SECCION PRINCIPAL -->
 
-                <!-- SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
-                <div class="content">
-                    <div class="container-fluid">
-                        <!--CONTENIDO QUE SE SOBRE ESCRIBE EN CADA PAGINA......-->
-                        <div class="content"> 
-                            <div class="col">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <h2 id="tabla-categorias"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categorías de Producto</font></font></h2>
-                                            </div>
-                                            <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
-                                                <a class="btn btn-success mr-2 btn-sm" href="#" data-toggle="modal" data-target="#registro-categoria"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva categoría</font></font></a>
-                                                <!-- SEARCH FORM -->
-                                                <form class="form-inline">
-                                                    <div class="input-group input-group-sm">
-                                                        <input class="form-control form-control-navbar" type="search" placeholder="Buscar fuera" aria-label="buscar"/>
-                                                        <div class="input-group-append">
-                                                            <button style="background-color: rgb(207, 207, 207);" class="btn btn-navbar" type="submit">
-                                                                <i class="fas fa-search"></i>
-                                                            </button>
-                                                        </div>
+
+
+        <div class="content-wrapper">
+            <!-- CONTENIDO HEADER SECCION PRINCIPAL-->
+            <div class="content-header">
+                <h1>Categorias</h1>
+            </div>
+            <!-- /.CONTENIDO HEADER SECCION PRINCIPAL -->
+
+            <!-- SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!--CONTENIDO QUE SE SOBRE ESCRIBE EN CADA PAGINA......-->
+                    <div class="content"> 
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <h2 id="tabla-categorias"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Categorías de Producto</font></font></h2>
+                                        </div>
+                                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
+                                            <a class="btn btn-success mr-2 btn-sm" href="#" data-toggle="modal" data-target="#registro-categoria"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nueva categoría</font></font></a>
+                                            <!-- SEARCH FORM -->
+                                            <form class="form-inline">
+                                                <div class="input-group input-group-sm">
+                                                    <input class="form-control form-control-navbar" type="search" placeholder="Buscar fuera" aria-label="buscar"/>
+                                                    <div class="input-group-append">
+                                                        <button style="background-color: rgb(207, 207, 207);" class="btn btn-navbar" type="submit">
+                                                            <i class="fas fa-search"></i>
+                                                        </button>
                                                     </div>
-                                                </form>
-                                            </div>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
-                                    <!-- /.card-header -->
-                                    <div class="card-body">
-                                        <table class="table table-bordered table-hover">
-                                            <thead class="text-center">
-                                                <tr>
-                                                    <th>categoría de identificación</th>
-                                                    <th>nombre de la categoría</th>
-                                                    <th>cambios</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <c:forEach items="#{categoriaProRequest.listaCategorias}" var="categoria" >
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>categoría de identificación</th>
+                                                <th>nombre de la categoría</th>
+                                                <th>cambios</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="#{categoriaProRequest.listaCategorias}" var="categoria" >
                                                 <tr>
                                                     <td> #{categoria.idcategoriasProductos} </td>
                                                     <td> #{categoria.nombre}</td>
                                                     <td>
                                                         <div class="d-flex justify-content-around">
                                                             <h:form>
-                                                            <h:commandButton value="Eliminar" class="btn btn-danger" action="#{categoriaProRequest.eliminarCategoria(categoria)}"></h:commandButton>
-                                                            <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#editar-categoria"  >
-                                                                <f:ajax execute="@this" event="click" listener="#{categoriaProRequest.editarCategoria(categoria)}" render="editar"></f:ajax>
-                                                            </h:commandButton>
+                                                                <h:commandButton value="Eliminar" class="btn btn-danger" action="#{categoriaProRequest.eliminarCategoria(categoria)}"></h:commandButton>
+                                                                <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#editar-categoria"  >
+                                                                    <f:ajax execute="@this" event="click" listener="#{categoriaProRequest.editarCategoria(categoria)}" render="editar"></f:ajax>
+                                                                </h:commandButton>
                                                             </h:form>
                                                         </div>
                                                     </td>
                                                 </tr>
-                                               </c:forEach>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
+                                            </c:forEach>
+                                        </tbody>
+                                    </table>
                                 </div>
+                                <!-- /.card-body -->
                             </div>
                         </div>
-                        <!--/tabla categorias -->
+                    </div>
+                    <!--/tabla categorias -->
+                </div>
+            </div>
+            <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+        </div>
+        <!--Modal registrar una categoria-->
+        <div class="container">
+            <div class="row">
+                <div class="modal fade" id="registro-categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Registro Categoria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <h:form>
+                                <div class="modal-body">
+                                    <h:outputLabel for="crear" value="Categoria"></h:outputLabel>
+                                    <h:inputText id="crear"  value="#{categoriaProRequest.categoria.nombre}" ></h:inputText>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <h:commandButton class="btn btn-secondary" value="Crear" action="#{categoriaProRequest.crearProducto()}" ></h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
                     </div>
                 </div>
-                <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
-            </div>
-            <!--Modal registrar una categoria-->
-            <div class="container">
-                <div class="row">
-                    <div class="modal fade" id="registro-categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Registro Categoria</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <h:form>
-                                    <div class="modal-body">
-                                        <h:outputLabel for="crear" value="Categoria"></h:outputLabel>
-                                        <h:inputText id="crear"  value="#{categoriaProRequest.categoria.nombre}" ></h:inputText>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <h:commandButton class="btn btn-secondary" value="Crear" action="#{categoriaProRequest.crearProducto()}" ></h:commandButton>
-                                    </div>
-                                </h:form>
-                            </div>
-                        </div>
-                    </div>
 
-                </div>
             </div>
-            <!--Modal para editar una categoria-->
-            <div class="container">
-                <div class="row">
-                    <div class="modal fade" id="editar-categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar categoria</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <h:form id="editar">
-                                    <h:inputHidden value="#{categoriaProRequest.categoriaEditar.idcategoriasProductos}"></h:inputHidden>
-                                    <div class="modal-body">
-                                        <h:outputLabel for="editar" value="Categoria"></h:outputLabel>
-                                        <h:inputText id="editar"  value="#{categoriaProRequest.categoriaEditar.nombre}" ></h:inputText>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <h:commandButton class="btn btn-secondary" value="Modificar" action="#{categoriaProRequest.actualizarCategoria()}" ></h:commandButton>
-                                    </div>
-                                </h:form>
+        </div>
+        <!--Modal para editar una categoria-->
+        <div class="container">
+            <div class="row">
+                <div class="modal fade" id="editar-categoria" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar categoria</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
+                            <h:form id="editar">
+                                <h:inputHidden value="#{categoriaProRequest.categoriaEditar.idcategoriasProductos}"></h:inputHidden>
+                                <div class="modal-body">
+                                    <h:outputLabel for="editar" value="Categoria"></h:outputLabel>
+                                    <h:inputText id="editar"  value="#{categoriaProRequest.categoriaEditar.nombre}" ></h:inputText>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <h:commandButton class="btn btn-secondary" value="Modificar" action="#{categoriaProRequest.actualizarCategoria()}" ></h:commandButton>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
-
                 </div>
+
             </div>
-            
+        </div>
+
 
 
 

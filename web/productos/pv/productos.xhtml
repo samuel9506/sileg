@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+        <div class="content-wrapper">
+            <!-- CONTENIDO HEADER SECCION PRINCIPAL-->
+            <div class="content-header">
+                <h1>Productos</h1>
+            </div>
+            <!-- /.CONTENIDO HEADER SECCION PRINCIPAL -->
+
+            <!-- SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!--CONTENIDO QUE SE SOBRE ESCRIBE EN CADA PAGINA......-->
+                    <div class="content"> 
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <h2 id="tabla-categorias">Lista de productos </h2>
+                                        </div>
+                                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear-p">
+                                                crear producto
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /TABLA DE PROVEEDORES -->
+                                <div class="card-body">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>id productos</th>
+                                                <th>nombre producto</th>
+                                                <th>categoria</th>
+                                                <th>Stock</th>
+                                                <th>presentacion</th>
+                                                <th>precio compra</th>
+                                                <th>precio venta</th>
+                                                <th>fecha vencimiento</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="#{productosRequest.listaProductos}" var="pro" >
+                                                   <tr>
+                                                       <td>#{pro.idproductos}</td>
+                                                       <td>#{pro.nombreProducto}</td>
+                                                       <td>#{pro.idcategoriasProductos.nombre}</td>
+                                                       <td>#{pro.stockActual}</td>
+                                                       <td>#{pro.presentacion}</td>
+                                                       <td>#{pro.precioCompra}</td>
+                                                       <td>#{pro.precioVenta}</td>
+                                                       <td>#{pro.fechaVenc}</td>
+                                                       <td>
+                                                           <div class="d-flex justify-content-around">
+                                                               <h:form>
+                                                                   <h:commandButton value="Eliminar" class="btn btn-danger" action="#{productosRequest.eliminarProducto(pro)}" ></h:commandButton>
+                                                                   <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#editar-p"  >
+                                                                       <f:ajax execute="@this" event="click"  render="actualizar-p" listener="#{productosRequest.editar(pro)}"></f:ajax>
+                                                                   </h:commandButton>
+                                                               </h:form>
+                                                           </div>
+                                                       </td>
+                                                   </tr>
+                                               </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--/tabla categorias -->
+                </div>
+            </div>
+            <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+        </div>
+        <!--Modal registrar una producto-->
+        <div class="container">
+            <div class="row">
+                
+                    <div class="modal fade" id="crear-p" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <h:form>
+                                <div class="modal-body">
+
+                                    <div class="form-group">
+                                        <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="stk" value="stock"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.stockActual}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.producto.presentacion}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.producto.precioCompra}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.producto.fechaVenc}" >
+                                            <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
+                                        </h:inputText>
+                                    </div>
+                                     <h:selectOneMenu class="form-control" value="#{productosRequest.idCategoria}">
+                                        <f:selectItem itemLabel="Seleccione una categoria..." itemValue="null"></f:selectItem>
+                                        <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
+                                     </h:selectOneMenu>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <h:commandButton action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
+                                </div>
+                               </h:form>     
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+        <!--Modal para editar un proveedor-->
+        <div class="container">
+            <div class="row">
+                
+                    <div class="modal fade" id="editar-p" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <h:form id="actualizar-p">
+                                <div class="modal-body">
+                                    <h:inputHidden value="#{productosRequest.productoEditar.idproductos}"></h:inputHidden>
+                                    <div class="form-group">
+                                        <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.productoEditar.nombreProducto}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.productoEditar.precioVenta}"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="stk" value="stock"></h:outputLabel>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.productoEditar.stockActual}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.productoEditar.presentacion}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.productoEditar.precioCompra}" ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.productoEditar.fechaVenc}" >
+                                            <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
+                                        </h:inputText>
+                                    </div>
+                                     <h:selectOneMenu class="form-control" value="#{productosRequest.idCategoria}">
+                                        <f:selectItem itemLabel="Seleccione una categoria..." itemValue="null"></f:selectItem>
+                                        <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
+                                     </h:selectOneMenu>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <h:commandButton action="#{productosRequest.actualizarProducto()}" value="Actualizar producto" class="btn btn-secondary" ></h:commandButton>
+                                </div>
+                               </h:form>     
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+
+
+
+    </ui:composition>
+
+</html>
