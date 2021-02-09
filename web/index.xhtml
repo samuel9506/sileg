@@ -305,22 +305,18 @@
                         <br/>
                         <h:inputSecret  value="#{usuarioSesion.clave}" class="form-control" html5:placeholder="Clave"/>
                         <label class="checkbox" style="margin-left: 20px;">
-                            <input type="checkbox" value="remember-me"/> Remember me
+                            <input type="checkbox" value="remember-me"/> Recordarme
                             <span class="pull-right">
-                                <a data-toggle="modal" href="login.html#myModal"> Forgot Password?</a>
+                                <a data-toggle="modal" href="login.html#myModal"> olvido su contraseña?</a>
                             </span>
                         </label>
-                        <h:commandButton action="#{usuarioSesion.inicioSession()}" class="btn btn-theme btn-block" value="SIGN IN"/>
+                        <h:commandButton action="#{usuarioSesion.inicioSession()}" class="btn btn-theme btn-block" value="Iniciar Sesion"/>
                         <hr/>
-                        <div class="login-social-link centered">
-                            <p>or you can sign in via your social network</p>
-                            <button class="btn btn-facebook" type="submit"><i class="fa fa-facebook"></i> Facebook</button>
-                            <button class="btn btn-twitter" type="submit"><i class="fa fa-twitter"></i> Twitter</button>
-                        </div>
+                       
                         <div class="registration">
-                            Don't have an account yet?<br/>
+                            No tienes cuenta aún?<br/>
                             <a class="" href="pu/registro.xhtml">
-                                Create an account
+                                Crear una cuenta
                             </a>
                         </div>
                     </div>

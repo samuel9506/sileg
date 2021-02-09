@@ -340,7 +340,170 @@
 
             </div>
         </div>
+        
+                <div class="content-wrapper">
+            <!-- CONTENIDO HEADER SECCION PRINCIPAL-->
+            <div class="content-header">
+                <h1>Proveedor</h1>
+            </div>
+            <!-- /.CONTENIDO HEADER SECCION PRINCIPAL -->
 
+            <!-- SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+            <div class="content">
+                <div class="container-fluid">
+                    <!--CONTENIDO QUE SE SOBRE ESCRIBE EN CADA PAGINA......-->
+                    <div class="content"> 
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="row">
+                                        <div class="col-12 col-md-6">
+                                            <h2 id="tabla-categorias">Lista de proveedores </h2>
+                                        </div>
+                                        <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#crear">
+                                                crear proveedor
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /TABLA DE PROVEEDORES -->
+                                <div class="card-body">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>id proveedores</th>
+                                                <th>nombres</th>
+                                                <th>representante</th>
+                                                <th>nit</th>
+                                                <th>direccion</th>
+                                                <th>telefono</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="#{proveedorRequest.listaProveedores}" var="proveedor"  >
+                                                 <tr>
+                                                     <td>#{proveedor.idproveedores}</td>
+                                                     <td>#{proveedor.nombres}</td>
+                                                     <td>#{proveedor.representante}</td>
+                                                     <td>#{proveedor.nit}</td>
+                                                     <td>#{proveedor.direccion}</td>
+                                                     <td>#{proveedor.telefono}</td>
+                                                     <td>
+                                                         <div class="d-flex justify-content-around">
+                                                             <h:form>
+                                                                 <h:commandButton value="Eliminar" class="btn btn-danger" action="#{proveedorRequest.eliminarProveedor(proveedor)}"></h:commandButton>
+                                                                 <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#actualizar-p"  >
+                                                                     <f:ajax execute="@this" event="click"  render="actualizar" listener="#{proveedorRequest.editarProveedor(proveedor)}"></f:ajax>
+                                                                 </h:commandButton>
+                                                             </h:form>
+                                                         </div>
+                                                     </td>
+                                                 </tr>
+                                             </c:forEach>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                    </div>
+                    <!--/tabla categorias -->
+                </div>
+            </div>
+            <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
+        </div>
+        <!--Modal registrar una proveedor-->
+        <div class="container">
+            <div class="row">
+                <div class="modal fade" id="crear" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <h:form>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedor.nombres}" class="form-control" id="nombre"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="rep" value="representante"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedor.representante}" class="form-control" id="rep"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="nit" value="Nit"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedor.nit}" class="form-control" id="nit"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="direccion" value="Direccion"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedor.direccion}" class="form-control" id="direccion"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="telefono" value="telefono"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedor.telefono}" class="form-control" id="telefono"  ></h:inputText>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton action="#{proveedorRequest.crearProveedor()}" value="Crear proveedor" class="btn btn-secondary" ></h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Modal para editar un proveedor-->
+        <div class="container">
+            <div class="row">
+                <div class="modal fade" id="actualizar-p" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <h:form id="actualizar">
+                                <div class="modal-body">
+                                    <h:inputHidden value="#{proveedorRequest.proveedorEditar.idproveedores}"></h:inputHidden>
+                                    <div class="form-group">
+                                        <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedorEditar.nombres}" class="form-control" id="nombre"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="rep" value="representante"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedorEditar.representante}" class="form-control" id="rep"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="nit" value="Nit"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedorEditar.nit}" class="form-control" id="nit"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="direccion" value="Direccion"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedorEditar.direccion}" class="form-control" id="direccion"  ></h:inputText>
+                                    </div>
+                                    <div class="form-group">
+                                        <h:outputLabel for="telefono" value="telefono"></h:outputLabel>
+                                        <h:inputText value="#{proveedorRequest.proveedorEditar.telefono}" class="form-control" id="telefono"  ></h:inputText>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <h:commandButton action="#{proveedorRequest.actualizarProveedor()}" value="Actualizar" class="btn btn-secondary" ></h:commandButton>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 

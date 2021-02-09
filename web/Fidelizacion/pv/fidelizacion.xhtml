@@ -7,129 +7,9 @@
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition>
-         <div class="wrapper">
+        <div class="wrapper">
 
-            <!-- Navbar -->
-            <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-                <!-- Left navbar links -->
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                    </li>
-                </ul>
 
-                <!-- SEARCH FORM -->
-                <form class="form-inline ml-3">
-                    <div class="input-group input-group-sm">
-                        <input class="form-control form-control-navbar" type="search" placeholder="search for" aria-label="buscar"/>
-                        <div class="input-group-append">
-                            <button class="btn btn-navbar" type="submit"> <a href="../index.html"></a>
-                                <i class="fas fa-search"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Right navbar links -->
-                <ul class="navbar-nav ml-auto">
-                    <!-- Notifications Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" data-toggle="dropdown" href="#">
-                            <i class="far fa-bell"></i>
-                            <span class="badge badge-warning navbar-badge">5</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                            <span class="dropdown-header">Sileg notifications</span>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-eye mr-2"></i> 3 Products without minimum stock
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a href="#" class="dropdown-item">
-                                <i class="fas fa-address-book mr-2"></i> 2 pending orders
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button"><i
-                                class="fas fa-sign-out-alt"></i></a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- /.navbar -->
-
-            <!-- Main Sidebar Container -->
-            <aside class="main-sidebar sidebar-dark-primary elevation-4">
-                <!-- Brand Logo -->
-                <a href="#" class="brand-link">
-                    <img src="../img/beer.png" alt="SILEG Logo" class="brand-image img-circle elevation-3" style="opacity: .8"/>
-                    <span class="brand-text font-weight-light">SILEG</span>
-                </a>
-
-                <!-- Sidebar -->
-                <div class="sidebar">
-                    <!-- Sidebar user panel (optional) -->
-                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                        <div class="image">
-                            <img src="../img/fa.jpg" class="img-circle elevation-2" alt="User Image"/>
-                        </div>
-                        <div class="info">
-                            <a href="#" class="d-block">Fabian Mendoza</a>
-                            <p class="text-center" style="font-family: Roboto; color: white;" >Admin</p>
-                        </div>
-                    </div>
-
-                    <!-- Sidebar Menu -->
-                    <nav class="mt-2">
-                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                            <!-- Add icons to the links using the .nav-icon class
-                          with font-awesome or any other icon font library -->
-                            <li class="nav-item has-treeview menu-open">
-                                <a href="#" class="nav-link active">
-                                    <p>
-                                        Modules
-                                        <i class="right fas fa-angle-left"></i>
-                                    </p>
-                                </a>
-                                <ul class="nav nav-treeview">
-                                    <li class="nav-item">
-                                        <a href="registrar-venta.html" class="nav-link">
-                                            <p>sales</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="canjepuntos.html" class="nav-link">
-                                            <p>Redemption of points</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="inventarios.html" class="nav-link">
-                                            <p>Inventories</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="fidelizacion-admin.html" class="nav-link">
-                                            <p>Loyalty</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="users.html" class="nav-link">
-                                            <p>Users</p>
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="reports.html" class="nav-link">
-                                            <p>Reports</p>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </nav>
-                    <!-- /.sidebar-menu -->
-                </div>
-                <!-- /.sidebar -->
-            </aside>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -138,7 +18,7 @@
                     <div class="container-fluid">
                         <div class="row mb-2">
                             <div class="col-sm-6">
-                                <h1 class="m-0 text-dark">Create Campaigns</h1>
+                                <h1 class="m-0 text-dark">Crear Campaña</h1>
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -152,14 +32,15 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body register-card-body">
-                                        <p class="login-box-msg">Register a new campaign</p>
+                                        <p class="login-box-msg">Registrar una nueva campaña</p>
 
-                                        <form action="../../index.html" method="post">
+
+                                        <h:form>
                                             <div class="row">
                                                 <!--columnas formulario -->
                                                 <div class="col">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control"  placeholder="Name" maxlength="20"/>
+                                                        <h:inputText value="#{campañaFidelizacionRequest.camfid.titulo}" class="form-control"  html5:placeholder="Titulo" maxlength="20"></h:inputText>
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <span class="fas fa-user"></span>
@@ -169,7 +50,7 @@
                                                 </div>
                                                 <div class="col">
                                                     <div class="input-group mb-3">
-                                                        <input type="text" class="form-control" required="" placeholder="slogan" maxlength="70"/>
+                                                        <h:inputText  value="#{campañaFidelizacionRequest.camfid.descripcion}"  html5:placeholder="Descripcion" maxlength="70" class="form-control"></h:inputText>
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-comment"></i>
@@ -181,7 +62,7 @@
                                             <div class="row">
                                                 <div class="col">
                                                     <div class="input-group mb-3">
-                                                        <input type="number" class="form-control" required="" placeholder="points" min="1"/>
+                                                        <h:inputText  value="#{campañaFidelizacionRequest.camfid.puntos}" class="form-control"  html5:placeholder="puntos" ></h:inputText> 
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-poll"></i>
@@ -189,16 +70,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col">
-                                                    <div class="input-group mb-3">
-                                                        <input type="file" class="form-control" required="" placeholder="archivo"/>
-                                                        <div class="input-group-append">
-                                                            <div class="input-group-text">
-                                                                <span class="fas fa-images"></span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+
                                             </div>
                                             <!-- fin columnas formulario -->
 
@@ -207,7 +79,7 @@
                                                 <div class="col">
                                                     <p>Start date</p>
                                                     <div class="input-group mb-3">
-                                                        <input type="date" class="form-control" required="" placeholder="fecha inicio"/>
+                                                        <h:inputText  value="#{campañaFidelizacionRequest.camfid.fechaInicio}" class="form-control"  html5:placeholder="fecha inicio"></h:inputText>
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-calendar-alt"></i>
@@ -220,7 +92,7 @@
                                                 <div class="col">
                                                     <p>end date</p>
                                                     <div class="input-group mb-3">
-                                                        <input type="date" class="form-control" required="" placeholder="fecha finalizacion"/>
+                                                        <h:inputText  value="#{campañaFidelizacionRequest.camfid.fechaFinal}" class="form-control"  html5:placeholder="fecha finalizacion"></h:inputText>
                                                         <div class="input-group-append">
                                                             <div class="input-group-text">
                                                                 <i class="fas fa-calendar-alt"></i>
@@ -233,10 +105,10 @@
 
                                             <!-- inicio boton -->
                                             <div class="col-12">
-                                                <button type="submit" class="btn btn-success btn-block" onclick="alerta()">Create new campaign</button>
+                                                <h:commandButton action="#{campañaFidelizacionRequest.crearCampaña()}" class="btn btn-success btn-block" value="Crear nueva campaña" ></h:commandButton>
                                             </div>
                                             <!-- fin  -->
-                                        </form>
+                                        </h:form>
                                     </div>
                                     <!-- /.form-box -->
                                 </div><!-- /.card -->
@@ -247,211 +119,62 @@
                             <div class="container-fluid">
                                 <div class="row mb-2">
                                     <div class="col-sm-6">
-                                        <h1 class="m-0 text-dark">requests 
-                                            requests, complaints and claims</h1>
+                                        <h1 class="m-0 text-dark">Campañas de Fidelizacion</h1>
                                     </div><!-- /.col -->
                                 </div><!-- /.row -->
                             </div><!-- /.container-fluid -->
                         </div>
-                        <!-- tabla de pqrs -->
+                        <!-- tabla creacion campañas -->
                         <div class="row">
                             <div class="col-12">
                                 <div class="card-body">
                                     <table class="table table-bordered table-hover table-responsive-md">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>Client</th>
-                                                <th>Kind</th>
-                                                <th>Title</th>
-                                                <th>Date</th>
-                                                <th>Description</th>
-                                                <th>Reply</th>
+                                                <th>Nombre Campaña</th>
+                                                <th>Descripcion</th>
+                                                <th>Puntos</th>
+                                                <th>Fecha inicio</th>
+                                                <th>Fecha finalizacion</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Peticion</td>
-                                                <td>añadir nuevos productos</td>
-                                                <td>17/05/2020</td>
-                                                <td>los productos son buenos pero hay que agregar mas</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-target="#responder" data-toggle="modal" class="btn btn-warning btn-sm">
-                                                            Responder
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>Andres Perez</td>
-                                                <td>Petition</td>
-                                                <td>add new products</td>
-                                                <td>17/05/2020</td>
-                                                <td>the products are good but you have to add more</td>
-                                                <td>
-                                                    <form action="" class="d-flex justify-content-around">
-                                                        <button type="button" data-toggle="modal" data-target="#responder" class="btn btn-warning btn-sm">
-                                                            Reply
-                                                            <i class="fas fa-reply-all"></i>
-                                                        </button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                            <c:forEach items="#{campañaFidelizacionRequest.listaCampañas}" var="cam">
+                                                <tr>
+                                                    <td>#{cam.titulo}</td>
+                                                    <td>#{cam.descripcion}</td>
+                                                    <td>#{cam.puntos}</td>
+                                                    <td>#{cam.fechaInicio}</td>
+                                                    <td>#{cam.fechaFinal}</td>
+                                                    <td>
+                                                        <h:form class="d-flex justify-content-around ">
+                                                            <h:commandButton value="Eliminar" class="btn btn-danger" action="#{campañaFidelizacionRequest.eliminarCampaña(cam)}"></h:commandButton>
+                                                            <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#edicion"  >
+                                                                <f:ajax execute="@this" event="click" listener="#{campañaFidelizacionRequest.editarCampañas(cam)}" render="formulario"></f:ajax>
+                                                            </h:commandButton>
+                                                        </h:form>
+                                                         
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                 </div> 
                             </div>
                         </div>
-                        <!-- tabla de pqrs -->
+                        <!-- tabla de campañas -->
 
-                        <!-- modal respuesta de pqrs -->
+                        <!-- modal edicion campañas -->
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <div class="modal fade" id="responder" tabindex="-1" role="dialog"
+                                    <div class="modal fade" id="edicion" tabindex="-1" role="dialog"
                                          aria-labelledby="responder" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <h2 class="modal-tittle">
-                                                        answer PQRS
+                                                        Campañas 
                                                         <i class="fas fa-reply-all"></i>
                                                     </h2>
                                                     <button class="close" data-dismiss="modal" aria-label="cerrar">
@@ -459,53 +182,81 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <form action="#" method="post">
+                                                    <h:form id="formulario">
                                                         <div class="row">
-                                                            <div class="col-12 col-md-6 input-group mb-3">
-                                                                <p>Andres Perez</p>
-                                                            </div>
-                                                            <div class="col-12 col-md-6 input-group mb-3">
-                                                                <p>
-                                                                    complain</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-12 col-md-12 input-group mb-3">
-                                                                <p class="border">
-                                                                    the products are good but you have to add more to the stock, to be able to choose between more products
-                                                                    and that those we buy as customers do not become common products
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-12 col-md-6 input-group mb-3">
-                                                                <input type="text" name="asunto" class="form-control" placeholder="Affair"/>
+                                                            <!--columnas formulario -->
+                                                            <h:inputHidden value="#{campañaFidelizacionRequest.campfidEditar.id}"></h:inputHidden>
+                                                            <div class="col">
+                                                                <div class="input-group mb-3">
+                                                                    <h:inputText value="#{campañaFidelizacionRequest.campfidEditar.titulo}" class="form-control"  html5:placeholder="Titulo" maxlength="20"></h:inputText>
                                                                     <div class="input-group-append">
                                                                         <div class="input-group-text">
-                                                                            <span class="fab fa-amilia"></span>
+                                                                            <span class="fas fa-user"></span>
                                                                         </div>
                                                                     </div>
+                                                                </div>
                                                             </div>
-                                                            <div class="col-12 col-md-6 input-group mb-3">
-                                                                <input type="date" name="fecha" class="form-control" placeholder="Date"/>
+                                                            <div class="col">
+                                                                <div class="input-group mb-3">
+                                                                    <h:inputText  value="#{campañaFidelizacionRequest.campfidEditar.descripcion}"  html5:placeholder="Descripcion" maxlength="70" class="form-control"></h:inputText>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <i class="fas fa-comment"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-12 col-md-12 input-group mb-3">
-                                                                <textarea name="textarea" id="textarea" cols="145" rows="5" placeholder="
-                                                                          Description"></textarea>
+                                                            <div class="col">
+                                                                <div class="input-group mb-3">
+                                                                    <h:inputText  value="#{campañaFidelizacionRequest.campfidEditar.puntos}" class="form-control"  html5:placeholder="puntos" ></h:inputText> 
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <i class="fas fa-poll"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </div>
-                                                        </div>
 
-                                                        <div class="row">
-                                                            <!-- /.col -->
-                                                            <div class="col-12">
-                                                                <button type="submit" class="btn btn-primary btn-block">
-                                                                    reply</button>
-                                                            </div>
-                                                            <!-- /.col -->
                                                         </div>
-                                                    </form>
+                                                        <!-- fin columnas formulario -->
+
+                                                        <!-- fechas -->
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p>Start date</p>
+                                                                <div class="input-group mb-3">
+                                                                    <h:inputText  value="#{campañaFidelizacionRequest.campfidEditar.fechaInicio}" class="form-control"  html5:placeholder="fecha inicio"></h:inputText>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <i class="fas fa-calendar-alt"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <p>end date</p>
+                                                                <div class="input-group mb-3">
+                                                                    <h:inputText  value="#{campañaFidelizacionRequest.campfidEditar.fechaFinal}" class="form-control"  html5:placeholder="fecha finalizacion"></h:inputText>
+                                                                    <div class="input-group-append">
+                                                                        <div class="input-group-text">
+                                                                            <i class="fas fa-calendar-alt"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <!-- fin fechas -->
+
+                                                        <!-- inicio boton -->
+                                                        <div class="col-12">
+                                                            <h:commandButton action="#{campañaFidelizacionRequest.actualizarCampañas()}" class="btn btn-success btn-block" value="Actualizar" ></h:commandButton>
+                                                        </div>
+                                                        <!-- fin  -->
+                                                    </h:form>
                                                 </div>
                                             </div>
                                         </div>
@@ -513,14 +264,14 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- modal respuesta de pqrs -->
+                        <!-- modal respuesta de edicion campañas -->
                     </div>
 
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-        
-        
+
+
 
     </ui:composition>
 

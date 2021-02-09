@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -42,8 +44,8 @@ public class Campañasfidelizacion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "id")
     private Integer id;
     @Size(max = 45)
@@ -52,16 +54,16 @@ public class Campañasfidelizacion implements Serializable {
     @Size(max = 45)
     @Column(name = "descripcion")
     private String descripcion;
+    @Size(max = 20)
     @Column(name = "fechaInicio")
-    @Temporal(TemporalType.DATE)
-    private Date fechaInicio;
+    private String fechaInicio;
+    @Size(max = 20)
     @Column(name = "fechaFinal")
-    @Temporal(TemporalType.DATE)
-    private Date fechaFinal;
+    private String fechaFinal;
     @Column(name = "puntos")
     private Integer puntos;
     @JoinColumn(name = "productosEspeciales_idprodespeciales", referencedColumnName = "idprodespeciales")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Productosespeciales productosEspecialesidprodespeciales;
 
     public Campañasfidelizacion() {
@@ -95,19 +97,19 @@ public class Campañasfidelizacion implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechaFinal() {
+    public String getFechaFinal() {
         return fechaFinal;
     }
 
-    public void setFechaFinal(Date fechaFinal) {
+    public void setFechaFinal(String fechaFinal) {
         this.fechaFinal = fechaFinal;
     }
 
