@@ -15,6 +15,7 @@ import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 import javax.ws.rs.POST;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -23,14 +24,17 @@ import javax.ws.rs.POST;
 @Named(value = "campañaFidelizacionRequest")
 @RequestScoped
 public class CampañaFidelizacionRequest implements Serializable {
-
+    
+    private String mensaje = "";
     public CampañaFidelizacionRequest() {
     }
+    
     @EJB
     CampañasfidelizacionFacadeLocal campañasfidelizacionFacadeLocal;
     private Campañasfidelizacion campfid = new Campañasfidelizacion();
     private Campañasfidelizacion campfidEditar = new Campañasfidelizacion();
     private List<Campañasfidelizacion> listaCampañas = new ArrayList();
+    
     
     @PostConstruct
     
@@ -51,6 +55,8 @@ public class CampañaFidelizacionRequest implements Serializable {
     public void crearCampaña(){
         campañasfidelizacionFacadeLocal.create(campfid);
         listaCampañas.add(campfid);
+        mensaje =  "swal('Correcto!', 'Campaña creada!', '')";
+        PrimeFaces.current().executeScript(mensaje);
     }
     
     
@@ -62,7 +68,8 @@ public class CampañaFidelizacionRequest implements Serializable {
        campañasfidelizacionFacadeLocal.remove(c);
        listaCampañas.clear();
        listaCampañas = campañasfidelizacionFacadeLocal.findAll();
-       
+       mensaje =  "swal('Peligro!', 'Campaña eliminada!', '')";
+       PrimeFaces.current().executeScript(mensaje);
     }
 
     public List<Campañasfidelizacion> getListaCampañas() {
@@ -82,6 +89,8 @@ public class CampañaFidelizacionRequest implements Serializable {
         campañasfidelizacionFacadeLocal.edit(campfidEditar);
         listaCampañas.clear();
         listaCampañas = campañasfidelizacionFacadeLocal.findAll();
+        mensaje =  "swal('Cambio Exitoso!', 'Campaña Actualizada!', '')";
+       PrimeFaces.current().executeScript(mensaje);
     }
 
     public Campañasfidelizacion getCampfidEditar() {
