@@ -85,14 +85,7 @@ public class DetallesSession implements Serializable {
         detalles = new Detallesfactura();
     }
 
-    public void agregarCliente() {
-
-        Usuario ususel = usuarioFacadeLocal.find(id);
-        factu.setIdUsuario(ususel);
-        listaFactura.add(factu);
-        factu = new Factura();
-
-    }
+   
 
     public void calcularSubtotal(Detallesfactura det) {
 
@@ -100,6 +93,7 @@ public class DetallesSession implements Serializable {
 
         if (det.getCantidad() != null) {
             subtotal = det.getFkProductos().getPrecioVenta() * det.getCantidad();
+            
 
         }
 
@@ -133,16 +127,17 @@ public class DetallesSession implements Serializable {
     }
 
     public void agregarFactura() {
-         facturaFacadeLocal.create(factu);
         
-         for (Detallesfactura d : listaDetalles) {
+        Usuario ususel = usuarioFacadeLocal.find(id);
+        factu.setIdUsuario(ususel);
+        facturaFacadeLocal.create(factu);
+
+        for (Detallesfactura d : listaDetalles) {
             d.setFkFactura(factu);
-             detallesfacturaFacadeLocal.create(d);
-         
+            detallesfacturaFacadeLocal.create(d);
         }
-        
-       factu = new Factura();
-      
+        factu = new Factura();
+        listaDetalles = new ArrayList<Detallesfactura>();
 
     }
 
