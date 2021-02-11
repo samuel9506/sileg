@@ -20,9 +20,9 @@ import javax.mail.internet.MimeMessage;
  * @author SENA
  */
 public class Email {
-    public static void sendModificacion(String para, String Nombres, String nombUsu, String clave) {
-        final String user = "adsiwebjava@gmail.com";//cambiará en consecuencia al servidor utilizado
-        final String pass = "adsi2020";
+    public static void sendMasivos(String para) {
+        final String user = "licores7.365@gmail.com";//cambiará en consecuencia al servidor utilizado
+        final String pass = "Figaro01062018";
 
 //1st paso) Obtener el objeto de sesión
         Properties props = new Properties();
@@ -44,23 +44,14 @@ public class Email {
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(para));
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(para));
             message.setSubject("Mensaje de recuperacion de clave... Test Login");
             java.util.Date fecha = new Date();
 
             message.setContent(
                     "<center><img src='https://www.sri.gob.ec/NoticiasSriPortlet/image/?idCodigo=301&expira=1' title='Banco Pedagogico'></center>"
                     + "<h3> Actualizacion de datos en Banco-Pedagogico. "
-                    + Nombres
-                    + "</h3>"
-                    + "Datos de Ingreso: "
-                    + "<h4> Nombre Usuario : "
-                    + nombUsu
-                    + "</h4>"
-                    + "<h4> Documento Usuario : "
-                    + clave
-                    + " </h4>"
-                    + "Ultima Modificacion"
+                 
                     + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " - "
                     + fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getYear(), "text/html");
 
