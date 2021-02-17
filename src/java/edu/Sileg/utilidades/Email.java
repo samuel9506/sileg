@@ -45,12 +45,12 @@ public class Email {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
             message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(para));
-            message.setSubject("Mensaje de recuperacion de clave... Test Login");
+            message.setSubject("Informacion Importante <-LICORES EL GATO->");
             java.util.Date fecha = new Date();
 
             message.setContent(
-                    "<center><img src='https://www.sri.gob.ec/NoticiasSriPortlet/image/?idCodigo=301&expira=1' title='Banco Pedagogico'></center>"
-                    + "<h3> Actualizacion de datos en Banco-Pedagogico. "
+                    "<center><img src='https://scontent.fbog15-1.fna.fbcdn.net/v/t1.0-9/101882631_260772118467664_7980011983543530032_o.jpg?_nc_cat=107&ccb=3&_nc_sid=e3f864&_nc_eui2=AeFtZY7oqKv3CV_bv61XjRYmZgvObhIppeRmC85uEiml5JJsCVAD_r9l7tk8R9XC72sZwFsZ539sPNcRUHynmYBG&_nc_ohc=1lbisRLQpr8AX_GbZCX&_nc_ht=scontent.fbog15-1.fna&oh=9a2484fac5e61024dbcdd2d095d06da8&oe=604AEBA5' title='Licores El Gato'></center>"
+                    + "<h3> . "
                  
                     + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " - "
                     + fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getYear(), "text/html");
