@@ -48,7 +48,7 @@ FROM
 	<title>
 		<band height="102" splitType="Stretch">
 			<frame>
-				<reportElement mode="Opaque" x="0" y="0" width="721" height="66" backcolor="#000000" uuid="e65a3c85-74dc-4476-8e30-fce27cb4b33e"/>
+				<reportElement mode="Opaque" x="0" y="0" width="774" height="66" backcolor="#000000" uuid="e65a3c85-74dc-4476-8e30-fce27cb4b33e"/>
 				<staticText>
 					<reportElement style="Title" x="0" y="0" width="370" height="66" uuid="6b0454ca-13ba-4b55-bdc4-a6473aba087e"/>
 					<box topPadding="4" leftPadding="4" bottomPadding="4" rightPadding="4"/>
@@ -66,7 +66,7 @@ FROM
 				</staticText>
 			</frame>
 			<frame>
-				<reportElement mode="Opaque" x="0" y="70" width="721" height="32" forecolor="#000000" backcolor="#CC0000" uuid="73bf7d8e-819a-4fa3-8869-f7226c2f2e3a"/>
+				<reportElement mode="Opaque" x="0" y="70" width="757" height="32" forecolor="#000000" backcolor="#CC0000" uuid="73bf7d8e-819a-4fa3-8869-f7226c2f2e3a"/>
 				<textField pattern="EEEEE dd MMMMM yyyy">
 					<reportElement x="553" y="12" width="144" height="20" forecolor="#FFFFFF" uuid="e4349b19-6b8c-4abb-a6de-c2c7102e4c53"/>
 					<textElement textAlignment="Right">
@@ -90,7 +90,7 @@ FROM
 				<text><![CDATA[Num factura]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="72" y="0" width="72" height="18" forecolor="#000000" uuid="5a7e6f3e-f352-474e-850e-9c8c1039da4c"/>
+				<reportElement style="Column header" x="576" y="0" width="72" height="18" forecolor="#000000" uuid="5a7e6f3e-f352-474e-850e-9c8c1039da4c"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
@@ -104,49 +104,42 @@ FROM
 				<text><![CDATA[Subtotal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="216" y="0" width="72" height="18" forecolor="#000000" uuid="8a37fe9c-3f57-4e54-a941-1063e881377e"/>
+				<reportElement style="Column header" x="72" y="0" width="72" height="18" forecolor="#000000" uuid="8a37fe9c-3f57-4e54-a941-1063e881377e"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[fecha]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="288" y="0" width="72" height="18" forecolor="#000000" uuid="fc3ffa2c-6296-4e42-b26f-53dcb898f3d2"/>
+				<reportElement style="Column header" x="504" y="0" width="72" height="18" forecolor="#000000" uuid="fc3ffa2c-6296-4e42-b26f-53dcb898f3d2"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[iva]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="360" y="0" width="72" height="18" forecolor="#000000" uuid="eeed6268-0110-41ec-8cc3-81ba633c29a7"/>
+				<reportElement style="Column header" x="432" y="0" width="72" height="18" forecolor="#000000" uuid="eeed6268-0110-41ec-8cc3-81ba633c29a7"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[cantidad]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="432" y="0" width="72" height="18" forecolor="#000000" uuid="f07ec526-1b42-4034-b89b-8b6a233850aa"/>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[sbutotal]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="504" y="0" width="72" height="18" forecolor="#000000" uuid="a4411059-e3d6-4c22-968c-76680b9d7ba6"/>
+				<reportElement style="Column header" x="359" y="0" width="72" height="18" forecolor="#000000" uuid="a4411059-e3d6-4c22-968c-76680b9d7ba6"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[nombreProducto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="576" y="0" width="72" height="18" forecolor="#000000" uuid="f0722cef-357e-4680-a1e8-19654c3f75c5"/>
+				<reportElement style="Column header" x="216" y="0" width="72" height="18" forecolor="#000000" uuid="f0722cef-357e-4680-a1e8-19654c3f75c5"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[nombres]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="Column header" x="649" y="0" width="72" height="18" forecolor="#000000" uuid="5d3da28e-9c34-4dbe-ac3d-a5e113be0257"/>
+				<reportElement style="Column header" x="298" y="0" width="72" height="18" forecolor="#000000" uuid="5d3da28e-9c34-4dbe-ac3d-a5e113be0257"/>
 				<textElement>
 					<font isBold="false"/>
 				</textElement>
@@ -166,7 +159,7 @@ FROM
 					<textFieldExpression><![CDATA[$F{factura_idFactura}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="72" y="0" width="72" height="18" uuid="0288f063-3ed0-458e-9e93-cbff49311314"/>
+					<reportElement style="Detail" positionType="Float" x="576" y="0" width="72" height="18" uuid="0288f063-3ed0-458e-9e93-cbff49311314"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
@@ -180,49 +173,42 @@ FROM
 					<textFieldExpression><![CDATA[$F{factura_subtotal}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="216" y="0" width="72" height="18" uuid="87a7c60e-6e35-4669-96bf-538d0f396e30"/>
+					<reportElement style="Detail" positionType="Float" x="72" y="0" width="72" height="18" uuid="87a7c60e-6e35-4669-96bf-538d0f396e30"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{factura_fecha}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="288" y="0" width="72" height="18" uuid="3455993c-0c40-4f13-ab05-c8ee53b35a65"/>
+					<reportElement style="Detail" positionType="Float" x="504" y="0" width="72" height="18" uuid="3455993c-0c40-4f13-ab05-c8ee53b35a65"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{factura_iva}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="360" y="0" width="72" height="18" uuid="512252e0-0686-454c-b69e-2957bbdf1648"/>
+					<reportElement style="Detail" positionType="Float" x="432" y="0" width="72" height="18" uuid="512252e0-0686-454c-b69e-2957bbdf1648"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{detallesfactura_cantidad}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="432" y="0" width="72" height="18" uuid="eba49c5c-eae2-4ada-96bb-3ee2b4180828"/>
-					<textElement>
-						<font size="14"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{detallesfactura_totalunidades}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="504" y="0" width="72" height="18" uuid="efc3f57a-9fc9-484f-9d3f-7b60fafa4477"/>
+					<reportElement style="Detail" positionType="Float" x="359" y="0" width="72" height="18" uuid="efc3f57a-9fc9-484f-9d3f-7b60fafa4477"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{productos_nombreProducto}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="576" y="0" width="72" height="18" uuid="e2ffd9f7-60e6-47f7-9f8c-981121dc8d22"/>
+					<reportElement style="Detail" positionType="Float" x="216" y="0" width="72" height="18" uuid="e2ffd9f7-60e6-47f7-9f8c-981121dc8d22"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{usuario_nombres}]]></textFieldExpression>
 				</textField>
 				<textField isStretchWithOverflow="true">
-					<reportElement style="Detail" positionType="Float" x="649" y="0" width="72" height="18" uuid="d588b551-9cf8-483a-8ccb-eb131341face"/>
+					<reportElement style="Detail" positionType="Float" x="288" y="0" width="71" height="18" uuid="d588b551-9cf8-483a-8ccb-eb131341face"/>
 					<textElement>
 						<font size="14"/>
 					</textElement>
@@ -232,7 +218,7 @@ FROM
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="7" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<line>
 				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="1aa96183-3fcf-4649-93a1-2b3bb8e1297f"/>
 				<graphicElement>

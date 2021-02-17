@@ -15,9 +15,7 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <div class="col-sm-12">
-                            <h2 class="m-0 text-dark">Ventas</h2>
-                        </div>
+                        
 
                         <div class="card card-info col-sm-12 pl-0 pr-0 col-md-10">
                             <div class="card-header">
@@ -26,9 +24,11 @@
                                         <h3 class="card-title" style="font-weight: bold;">Registro de venta</h3>
                                     </div>
                                     <div class="col  d-flex justify-content-end">
-                                        <button class=" btn btn-primary" data-toggle="modal" data-target="#registro-cliente"><i
-                                                class="fas fa-plus-circle"></i></button>
+                                        <h:form>
+                                            <h:commandButton value="Reportes" class="btn btn-dark " action="#{detallesSession.descargaListado()}" ></h:commandButton>
+                                        </h:form>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="card-body">
@@ -39,12 +39,14 @@
                                                 <p>#{detallesSession.factu.idUsuario.nombres}</p>
                                             </div>
                                         </div>
-                                        <div class="col-sm-12">
-                                            <div class="input-group mb-3">
-                                                <div class="input-group-prepend">
-                                                    <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
-                                                </div>
+                                        <div class="col-sm-6">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
 
+                                                <h:outputLabel for="fecha"></h:outputLabel>
+                                                <h:inputText class="form-control" id="fecha" value="#{detallesSession.factu.fecha}" >
+                                                    <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
+                                                </h:inputText>
                                             </div>
                                         </div>
 
@@ -65,7 +67,7 @@
                                                     itemValue="#{producto.idproductos}">
                                                 </f:selectItems>
                                             </h:selectOneMenu>
-                                            <h:commandButton value="add" class="btn btn-warning" action="#{detallesSession.agregarProducto()}"></h:commandButton>
+                                            <h:commandButton value="add" class="btn btn-primary" action="#{detallesSession.agregarProducto()}"></h:commandButton>
                                             <br></br>
                                             <h:selectOneMenu value="#{detallesSession.id}">
                                                 <f:selectItems 
@@ -78,6 +80,9 @@
 
                                         </div>
                                     </div>
+                                <br/>
+                                <br/>
+                                    
 
                                     <div class="row">
                                         <div class="col-12">
@@ -139,7 +144,7 @@
                                         </div>
                                     </div>
                                     <h:commandButton  action="#{detallesSession.agregarFactura()}" class="btn btn-danger" value="guardar"></h:commandButton>
-                                    h
+
                                 </h:form>
                             </div>
                         </div>

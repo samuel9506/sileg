@@ -14,12 +14,28 @@ import edu.Sileg.facade.DetallesfacturaFacadeLocal;
 import edu.Sileg.facade.FacturaFacadeLocal;
 import edu.Sileg.facade.ProductosFacadeLocal;
 import edu.Sileg.facade.UsuarioFacadeLocal;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.ejb.EJB;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 
 /**
  *
@@ -90,13 +106,18 @@ public class DetallesSession implements Serializable {
     public void calcularSubtotal(Detallesfactura det) {
 
         double subtotal = 0;
+        int procantidad=0;
+        int cantidadfinal=0;
 
         if (det.getCantidad() != null) {
+            
+            procantidad=det.getFkProductos().getStockActual();
+            cantidadfinal=procantidad-det.getCantidad();
             subtotal = det.getFkProductos().getPrecioVenta() * det.getCantidad();
             
 
         }
-
+        det.getFkProductos().setStockActual(cantidadfinal);
         det.setTotalunidades(subtotal);
 
         double total = 0;
@@ -140,6 +161,40 @@ public class DetallesSession implements Serializable {
         listaDetalles = new ArrayList<Detallesfactura>();
 
     }
+    
+     public void descargaListado() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext context = facesContext.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+        HttpServletResponse response = (HttpServletResponse) context.getResponse();
+        response.setContentType("application/pdf");
+
+        try {
+            Map parametro = new HashMap();
+            
+            Connection conec = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sileg", "root","");
+           
+            File jasper = new File(context.getRealPath("/WEB-INF/classes/edu/Sileg/reportes/listaFacturas.jasper"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametro, conec);
+
+            HttpServletResponse hsr = (HttpServletResponse) context.getResponse();
+            hsr.addHeader("Content-disposition", "attachment; filename=Certificado.pdf");
+            OutputStream os = hsr.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jp, os);
+            os.flush();
+            os.close();
+            facesContext.responseComplete();
+
+        } catch (JRException e) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + e.getMessage());
+        } catch (IOException i) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + i.getMessage());
+        } catch (SQLException q) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + q.getMessage());
+        }
+        }
+   
 
     public Detallesfactura getDetalles() {
         return detalles;
