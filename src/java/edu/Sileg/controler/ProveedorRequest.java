@@ -21,41 +21,41 @@ import javax.enterprise.context.RequestScoped;
  */
 @Named(value = "proveedorRequest")
 @RequestScoped
-public class ProveedorRequest implements Serializable{
-    
+public class ProveedorRequest implements Serializable {
+
     @EJB
     ProveedoresFacadeLocal proveedoresFacadeLocal;
     private Proveedores proveedor = new Proveedores();
     private Proveedores proveedorEditar = new Proveedores();
     private List<Proveedores> listaProveedores = new Vector();
-    
+
     /**
      * Creates a new instance of ProveedorRequest
      */
     public ProveedorRequest() {
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         listaProveedores.addAll(proveedoresFacadeLocal.findAll());
     }
-    
-    public void crearProveedor(){
+
+    public void crearProveedor() {
         proveedoresFacadeLocal.create(proveedor);
         listaProveedores.add(proveedor);
     }
-    
-    public void editarProveedor(Proveedores proveedor){
-       proveedorEditar = proveedor;
+
+    public void editarProveedor(Proveedores proveedor) {
+        proveedorEditar = proveedor;
     }
-    
-    public void actualizarProveedor(){
+
+    public void actualizarProveedor() {
         proveedoresFacadeLocal.edit(proveedorEditar);
         listaProveedores.clear();
         listaProveedores.addAll(proveedoresFacadeLocal.findAll());
     }
-    
-    public void eliminarProveedor(Proveedores proveedor){
+
+    public void eliminarProveedor(Proveedores proveedor) {
         proveedoresFacadeLocal.remove(proveedor);
         listaProveedores.remove(proveedor);
     }
@@ -83,5 +83,5 @@ public class ProveedorRequest implements Serializable{
     public void setListaProveedores(List<Proveedores> listaProveedores) {
         this.listaProveedores = listaProveedores;
     }
-    
+
 }
