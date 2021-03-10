@@ -30,4 +30,6 @@ public interface CatProductosFacadeLocal {
 
     int count();
     
+     public int cantidadProductoCategoria( int categoria);
+    
 }

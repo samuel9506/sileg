@@ -55,12 +55,12 @@
                                                 <tr>
                                                     <td>#{pro.idproductos}</td>
                                                     <td>#{pro.nombreProducto}</td>
-                                                    <td>#{pro.idcategoriasProductos.nombre}</td>
-                                                    <td>#{pro.stockActual}</td>
+                                                    <td>#{pro.fkCategoria.nombre}</td>
+                                                    <td>#{pro.existencias}</td>
                                                     <td>#{pro.presentacion}</td>
                                                     <td>#{pro.precioCompra}</td>
                                                     <td>#{pro.precioVenta}</td>
-                                                    <td>#{pro.fechaVenc}</td>
+                                                    <td>#{pro.fechavenc}</td>
                                                     <td>
                                                         <div class="d-flex justify-content-around">
                                                             <h:form>
@@ -111,7 +111,7 @@
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.stockActual}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
@@ -123,7 +123,7 @@
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
-                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.producto.fechaVenc}" >
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.producto.fechavenc}" >
                                             <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
                                         </h:inputText>
                                     </div>
@@ -169,7 +169,7 @@
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.productoEditar.stockActual}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.productoEditar.existencias}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
@@ -181,7 +181,7 @@
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
-                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.productoEditar.fechaVenc}" >
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.productoEditar.fechavenc}" >
                                             <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
                                         </h:inputText>
                                     </div>

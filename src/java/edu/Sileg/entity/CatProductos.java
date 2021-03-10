@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "CatProductos.findAll", query = "SELECT c FROM CatProductos c")})
 public class CatProductos implements Serializable {
 
+    @OneToMany(mappedBy = "fkCategoria", fetch = FetchType.LAZY)
+    private Collection<Productos> productosCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -99,6 +102,15 @@ public class CatProductos implements Serializable {
     @Override
     public String toString() {
         return "edu.sileg.entity.CatProductos[ idcategoriasProductos=" + idcategoriasProductos + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Productos> getProductosCollection() {
+        return productosCollection;
+    }
+
+    public void setProductosCollection(Collection<Productos> productosCollection) {
+        this.productosCollection = productosCollection;
     }
     
 }

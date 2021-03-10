@@ -55,7 +55,7 @@ public class ProductosRequest implements Serializable{
     
     public void crearProducto(){
         System.out.println("aca llego");
-        producto.setIdcategoriasProductos(catProductosFacadeLocal.find(idCategoria));
+        producto.setFkCategoria(catProductosFacadeLocal.find(idCategoria));
         productosFacadeLocal.create(producto);
         listaProductos.add(producto);
     
@@ -71,7 +71,7 @@ public class ProductosRequest implements Serializable{
     }
     
     public void actualizarProducto(){
-        productoEditar.setIdcategoriasProductos(catProductosFacadeLocal.find(idCategoria));
+        productoEditar.setFkCategoria(catProductosFacadeLocal.find(idCategoria));
         productosFacadeLocal.edit(productoEditar);
         listaProductos.clear();
         listaProductos.addAll(productosFacadeLocal.findAll());

@@ -35,7 +35,7 @@ public class ProductosFacade extends AbstractFacade<Productos> implements Produc
     @Override
      public List<Productos> listaProductosporcategoria(int fk_categoria) {
         try {
-            Query qt = em.createQuery("SELECT p FROM Productos p WHERE p.fkCategoria.idcategoria = :fk_categoria");
+            Query qt = em.createQuery("SELECT p FROM Productos p WHERE p.fkCategoria.idcategoriasProductos = :fk_categoria");
             qt.setParameter("fk_categoria", fk_categoria);
             return qt.getResultList();
         } catch (Exception e) {
@@ -56,5 +56,6 @@ public class ProductosFacade extends AbstractFacade<Productos> implements Produc
             return retorno;
         }
     }
+       
     
 }
