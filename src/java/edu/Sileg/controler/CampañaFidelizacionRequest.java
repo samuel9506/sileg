@@ -34,6 +34,7 @@ public class CampañaFidelizacionRequest implements Serializable {
     private Campañasfidelizacion campfid = new Campañasfidelizacion();
     private Campañasfidelizacion campfidEditar = new Campañasfidelizacion();
     private List<Campañasfidelizacion> listaCampañas = new ArrayList();
+   
     
     
     @PostConstruct
