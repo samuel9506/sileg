@@ -12,10 +12,12 @@ import edu.Sileg.facade.ProductosFacadeLocal;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Vector;
+import javafx.scene.control.Alert;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import org.primefaces.PrimeFaces;
 
 
 /**
@@ -32,7 +34,7 @@ public class ProductosRequest implements Serializable{
     @EJB
     CatProductosFacadeLocal catProductosFacadeLocal;
     
-    
+    private String mensaje = "";
     private Productos producto = new Productos();
     private Productos productoEditar = new Productos();
     private List<Productos> listaProductos = new Vector();
@@ -62,8 +64,17 @@ public class ProductosRequest implements Serializable{
     }
     
     public void eliminarProducto(Productos producto){
-        productosFacadeLocal.remove(producto);
-        listaProductos.remove(producto);
+        try{
+           productosFacadeLocal.remove(producto);
+        listaProductos.remove(producto); 
+        }catch (Exception e) {
+       mensaje =  "swal('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";
+            
+        }
+        PrimeFaces.current().executeScript(mensaje);
+        
+        
+        
     }
     
     public void editar(Productos producto){
