@@ -9,6 +9,7 @@ import edu.Sileg.entity.CatProductos;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -27,6 +28,17 @@ public class CatProductosFacade extends AbstractFacade<CatProductos> implements 
 
     public CatProductosFacade() {
         super(CatProductos.class);
+    }
+    
+      @Override
+      public int cantidadProductoCategoria( int categoria){
+        try {
+            Query qt = em.createNativeQuery("SELECT COUNT(*) FROM productos WHERE fk_categoria = ?1");
+            qt.setParameter(1, categoria);
+            return ((Number)qt.getSingleResult()).intValue();
+        } catch (Exception e) {
+            return 0;
+        }
     }
     
 }

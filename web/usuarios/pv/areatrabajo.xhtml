@@ -19,7 +19,7 @@
                 <h:form>
                     <div class="row" style="margin-top: 15px;">
                         <c:forEach items="#{categoriasView.listaCategorias}" var="cate">
-                            <h:commandLink action="#{categoriasView.seleccionCategoria(cate.idcategoria)}" >
+                            <h:commandLink action="#{categoriasView.seleccionCategoria(cate.idcategoriasProductos)}" >
                                 <div class="col-lg-2 col-md-2 col-sm-2 mb">
                                     <div class="weather-3 pn centered" style="background:">
 
@@ -29,7 +29,7 @@
                                             <div class="row">
                                                 <h3 class="centered">#{cate.nombre}</h3>
                                                 <div class="col-sm-12 col-xs-12 pull-right">
-                                                    <p class="goright"><i class="fa fa-flag"></i> #{categoriasView.cantidadproductoscategoria(cate.idcategoria)} Productos</p>
+                                                    <p class="goright"><i class="fa fa-flag"></i> #{categoriasView.cantidadproductoscategoria(cate.idcategoriasProductos)} Productos</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +75,7 @@
                                         <li>Puntos : #{pt.puntos}</li>
                                     </ul>
                                     
-                                   <a target="blank" href="https://api.whatsapp.com/send?phone=513115679564">
+                                   <a target="blank" href="https://api.whatsapp.com/send?phone=573154422237">
                                 
                                        <span class="bg-success">Haz tu pedido</span>
                             </a>
@@ -160,19 +160,19 @@
                             <h:form  id="cargaArchivo" enctype="multipart/form-data">
                                 <div class="modal-body">
                                     <div class="login-wrap">
-                                        <h:selectOneMenu id="idCat" value="#{productosView.id_categoria}" class="form-control">
-                                            <f:selectItems itemLabel="#{cat.nombre}" itemValue="#{cat.idcategoria}" value="#{categoriasView.listaCategorias}" var="cat"></f:selectItems>
+                                        <h:selectOneMenu id="idCat" value="#{productosRequest.idCategoria}" class="form-control">
+                                            <f:selectItems itemLabel="#{cat.nombre}" itemValue="#{cat.idcategoriasProductos}" value="#{categoriasView.listaCategorias}" var="cat"></f:selectItems>
                                         </h:selectOneMenu>
                                         <br/>
-                                        <h:inputText  value="#{productosView.regProductos.nombreProducto}" class="form-control" html5:placeholder="Nombre" html5:autofocus="true"/>
+                                        <h:inputText  value="#{productosRequest.producto.nombreProducto}" class="form-control" html5:placeholder="Nombre" html5:autofocus="true"/>
                                         <br/>
-                                        <h:inputText  value="#{productosView.regProductos.presentacion}" class="form-control" html5:placeholder="Presentacion" html5:autofocus="true"/>
+                                        <h:inputText  value="#{productosRequest.producto.presentacion}" class="form-control" html5:placeholder="Presentacion" html5:autofocus="true"/>
                                         <br/>
-                                        <h:inputText value="#{productosView.regProductos.existencias}" class="form-control" html5:placeholder="Cantidad" html5:autofocus="true"/>
+                                        <h:inputText value="#{productosRequest.producto.existencias}" class="form-control" html5:placeholder="Cantidad" html5:autofocus="true"/>
                                         <br/>
-                                        <h:inputText  value="#{productosView.regProductos.precioCompra}"  class="form-control" html5:placeholder="Valor Compra" html5:autofocus="true"/>
+                                        <h:inputText  value="#{productosRequest.producto.precioCompra}"  class="form-control" html5:placeholder="Valor Compra" html5:autofocus="true"/>
                                         <br/>
-                                        <h:inputText  value="#{productosView.regProductos.precioVenta}"  class="form-control" html5:placeholder="Valor Venta" html5:autofocus="true"/>
+                                        <h:inputText  value="#{productosRequest.producto.precioVenta}"  class="form-control" html5:placeholder="Valor Venta" html5:autofocus="true"/>
 
                                     </div>
                                     <div class="row">
@@ -198,7 +198,7 @@
                                             <h:inputFile id="cargaImagen" style="display: none"  onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}"  >
 
                                             </h:inputFile>
-                                            <h:commandButton id="btnCargaImagen"  style="display: none" action="#{categoriasView.accion(productosView.id_categoria)}" >
+                                            <h:commandButton id="btnCargaImagen"  style="display: none" action="#{categoriasView.accion(productosRequest.idCategoria)}" >
                                                 <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
                                             </h:commandButton>
 
@@ -210,7 +210,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                    <h:commandButton onclick="window.location.reload()" action="#{productosView.registrarProductos()}" class="btn btn-theme" value="Register"/>
+                                    <h:commandButton onclick="window.location.reload()" action="#{productosRequest.crearProducto()}" class="btn btn-theme" value="Register"/>
                                 </div>
                             </h:form>
                         </div>

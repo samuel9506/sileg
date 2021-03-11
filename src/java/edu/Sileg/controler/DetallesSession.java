@@ -111,13 +111,13 @@ public class DetallesSession implements Serializable {
 
         if (det.getCantidad() != null) {
             
-            procantidad=det.getFkProductos().getStockActual();
+            procantidad=det.getFkProductos().getExistencias();
             cantidadfinal=procantidad-det.getCantidad();
             subtotal = det.getFkProductos().getPrecioVenta() * det.getCantidad();
             
 
         }
-        det.getFkProductos().setStockActual(cantidadfinal);
+        det.getFkProductos().setExistencias(cantidadfinal);
         det.setTotalunidades(subtotal);
 
         double total = 0;

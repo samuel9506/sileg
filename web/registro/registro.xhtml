@@ -62,7 +62,9 @@
 
                         <label class="checkbox">
                             <span class="pull-right">
-                                <a data-toggle="modal" href="login.html#myModal"> Olvido su contraseña?</a>
+                                <button data-toggle="modal" data-target="#myModal" >
+                                     Olvido su contraseña?
+                                </button>
                             </span>
                         </label>
                         <h:commandButton action="#{registroRequest.registroUsuario()}" class="btn btn-theme btn-block" value="Registrar"/>
@@ -92,7 +94,7 @@
                                 <div class="modal-body">
                                     <p>Ingrese el correo para recuperar la contraseña.</p>
                                     <h:inputText value="#{registroRequest.correoIn}" html5:placeholder="correo" class="form-control placeholder-no-fix"></h:inputText>
-                                                                    </div>
+                                </div>
                                 <div class="modal-footer">
                                     <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
                                     <h:commandButton action="#{registroRequest.recuperarClave()}" class="btn btn-theme"  value="Enviar" ></h:commandButton>

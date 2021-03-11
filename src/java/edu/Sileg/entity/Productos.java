@@ -21,19 +21,28 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Usuario
+ * @author Samuel
  */
 @Entity
 @Table(name = "productos")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Productos.findAll", query = "SELECT p FROM Productos p")})
+    @NamedQuery(name = "Productos.findAll", query = "SELECT p FROM Productos p")
+    , @NamedQuery(name = "Productos.findByIdproductos", query = "SELECT p FROM Productos p WHERE p.idproductos = :idproductos")
+    , @NamedQuery(name = "Productos.findByNombreProducto", query = "SELECT p FROM Productos p WHERE p.nombreProducto = :nombreProducto")
+    , @NamedQuery(name = "Productos.findByPresentacion", query = "SELECT p FROM Productos p WHERE p.presentacion = :presentacion")
+    , @NamedQuery(name = "Productos.findByExistencias", query = "SELECT p FROM Productos p WHERE p.existencias = :existencias")
+    , @NamedQuery(name = "Productos.findByFechacompra", query = "SELECT p FROM Productos p WHERE p.fechacompra = :fechacompra")
+    , @NamedQuery(name = "Productos.findByFechavenc", query = "SELECT p FROM Productos p WHERE p.fechavenc = :fechavenc")
+    , @NamedQuery(name = "Productos.findByPrecioVenta", query = "SELECT p FROM Productos p WHERE p.precioVenta = :precioVenta")
+    , @NamedQuery(name = "Productos.findByPrecioCompra", query = "SELECT p FROM Productos p WHERE p.precioCompra = :precioCompra")
+    , @NamedQuery(name = "Productos.findByPuntos", query = "SELECT p FROM Productos p WHERE p.puntos = :puntos")
+    , @NamedQuery(name = "Productos.findByImagenRuta", query = "SELECT p FROM Productos p WHERE p.imagenRuta = :imagenRuta")})
 public class Productos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,36 +51,39 @@ public class Productos implements Serializable {
     @Basic(optional = false)
     @Column(name = "idproductos")
     private Integer idproductos;
-    @Size(max = 40)
-    @Column(name = "nombreproducto")
+    @Size(max = 45)
+    @Column(name = "nombreProducto")
     private String nombreProducto;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "precioventa")
-    private Double precioVenta;
-    @Column(name = "existencias")
-    private Integer stockActual;
-    @Size(max = 60)
+    @Size(max = 45)
     @Column(name = "presentacion")
     private String presentacion;
-    @Column(name = "preciocompra")
-    private Double precioCompra;
+    @Column(name = "existencias")
+    private Integer existencias;
+    @Column(name = "fechacompra")
+    @Temporal(TemporalType.DATE)
+    private Date fechacompra;
     @Column(name = "fechavenc")
     @Temporal(TemporalType.DATE)
-    private Date fechaVenc;
+    private Date fechavenc;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+    @Column(name = "precioVenta")
+    private Double precioVenta;
+    @Column(name = "precioCompra")
+    private Double precioCompra;
+    @Column(name = "puntos")
+    private Integer puntos;
+    @Size(max = 245)
+    @Column(name = "imagen_ruta")
+    private String imagenRuta;
     @JoinColumn(name = "fk_categoria", referencedColumnName = "idcategoria")
     @ManyToOne(fetch = FetchType.LAZY)
-    private CatProductos idcategoriasProductos;
+    private CatProductos fkCategoria;
 
     public Productos() {
     }
 
     public Productos(Integer idproductos) {
         this.idproductos = idproductos;
-    }
-
-    public Productos(Integer idproductos, Date fechaVenc) {
-        this.idproductos = idproductos;
-        this.fechaVenc = fechaVenc;
     }
 
     public Integer getIdproductos() {
@@ -90,28 +102,44 @@ public class Productos implements Serializable {
         this.nombreProducto = nombreProducto;
     }
 
-    public Double getPrecioVenta() {
-        return precioVenta;
-    }
-
-    public void setPrecioVenta(Double precioVenta) {
-        this.precioVenta = precioVenta;
-    }
-
-    public Integer getStockActual() {
-        return stockActual;
-    }
-
-    public void setStockActual(Integer stockActual) {
-        this.stockActual = stockActual;
-    }
-
     public String getPresentacion() {
         return presentacion;
     }
 
     public void setPresentacion(String presentacion) {
         this.presentacion = presentacion;
+    }
+
+    public Integer getExistencias() {
+        return existencias;
+    }
+
+    public void setExistencias(Integer existencias) {
+        this.existencias = existencias;
+    }
+
+    public Date getFechacompra() {
+        return fechacompra;
+    }
+
+    public void setFechacompra(Date fechacompra) {
+        this.fechacompra = fechacompra;
+    }
+
+    public Date getFechavenc() {
+        return fechavenc;
+    }
+
+    public void setFechavenc(Date fechavenc) {
+        this.fechavenc = fechavenc;
+    }
+
+    public Double getPrecioVenta() {
+        return precioVenta;
+    }
+
+    public void setPrecioVenta(Double precioVenta) {
+        this.precioVenta = precioVenta;
     }
 
     public Double getPrecioCompra() {
@@ -122,20 +150,28 @@ public class Productos implements Serializable {
         this.precioCompra = precioCompra;
     }
 
-    public Date getFechaVenc() {
-        return fechaVenc;
+    public Integer getPuntos() {
+        return puntos;
     }
 
-    public void setFechaVenc(Date fechaVenc) {
-        this.fechaVenc = fechaVenc;
+    public void setPuntos(Integer puntos) {
+        this.puntos = puntos;
     }
 
-    public CatProductos getIdcategoriasProductos() {
-        return idcategoriasProductos;
+    public String getImagenRuta() {
+        return imagenRuta;
     }
 
-    public void setIdcategoriasProductos(CatProductos idcategoriasProductos) {
-        this.idcategoriasProductos = idcategoriasProductos;
+    public void setImagenRuta(String imagenRuta) {
+        this.imagenRuta = imagenRuta;
+    }
+
+    public CatProductos getFkCategoria() {
+        return fkCategoria;
+    }
+
+    public void setFkCategoria(CatProductos fkCategoria) {
+        this.fkCategoria = fkCategoria;
     }
 
     @Override
@@ -160,7 +196,7 @@ public class Productos implements Serializable {
 
     @Override
     public String toString() {
-        return "edu.sileg.entity.Productos[ idproductos=" + idproductos + " ]";
+        return "edu.Sileg.entity.Productos[ idproductos=" + idproductos + " ]";
     }
     
 }

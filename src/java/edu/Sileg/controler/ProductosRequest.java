@@ -57,7 +57,7 @@ public class ProductosRequest implements Serializable{
     
     public void crearProducto(){
         System.out.println("aca llego");
-        producto.setIdcategoriasProductos(catProductosFacadeLocal.find(idCategoria));
+        producto.setFkCategoria(catProductosFacadeLocal.find(idCategoria));
         productosFacadeLocal.create(producto);
         listaProductos.add(producto);
     
@@ -68,7 +68,7 @@ public class ProductosRequest implements Serializable{
            productosFacadeLocal.remove(producto);
         listaProductos.remove(producto); 
         }catch (Exception e) {
-       mensaje =  "swal('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";
+       mensaje =  "swall('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";
             
         }
         PrimeFaces.current().executeScript(mensaje);
@@ -82,7 +82,7 @@ public class ProductosRequest implements Serializable{
     }
     
     public void actualizarProducto(){
-        productoEditar.setIdcategoriasProductos(catProductosFacadeLocal.find(idCategoria));
+        productoEditar.setFkCategoria(catProductosFacadeLocal.find(idCategoria));
         productosFacadeLocal.edit(productoEditar);
         listaProductos.clear();
         listaProductos.addAll(productosFacadeLocal.findAll());
