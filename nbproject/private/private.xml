@@ -3,25 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Samuel/sileg/web/WEB-INF/template/maqueta_1.xhtml</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/controler/DetallesSession.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/controler/UsuarioSesion.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/controler/CategoriasView.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/facade/CatProductosFacade.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/facade/CatProductosFacadeLocal.java</file>
-            <file>file:/C:/Users/Samuel/sileg/web/usuarios/pv/areatrabajo.xhtml</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/facade/ProductosFacade.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/controler/CategoriaProRequest.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/entity/Productos.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/controler/ProductosRequest.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/entity/Usuario.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/entity/Detallesfactura.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/entity/Factura.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/entity/Compras.java</file>
-            <file>file:/C:/Users/Samuel/sileg/web/inventarios/pv/areatrabajo.xhtml</file>
-            <file>file:/C:/Users/Samuel/sileg/web/usuarios/index.xhtml</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/entity/CatProductos.java</file>
-            <file>file:/C:/Users/Samuel/sileg/src/java/edu/Sileg/facade/ProductosFacadeLocal.java</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/src/java/edu/Sileg/utilidades/Peticion.java</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/web/Administrador/index.xhtml</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/src/java/edu/Sileg/controler/CampañaFidelizacionRequest.java</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/web/Administrador/pv/areatrabajo.xhtml</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/src/java/edu/Sileg/utilidades/Email.java</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/src/java/edu/Sileg/controler/RegistroRequest.java</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/web/Fidelizacion/pv/fidelizacion.xhtml</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/web/registro/registro.xhtml</file>
+            <file>file:/D:/Users/Usuario/Desktop/Sileg/web/inventarios/pv/areatrabajo.xhtml</file>
         </group>
     </open-files>
 </project-private>
