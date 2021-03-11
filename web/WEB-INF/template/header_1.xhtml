@@ -9,7 +9,7 @@
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
             </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>DASH<span>IO</span></b></a>
+            <a href="index.html" class="logo"><b>Sileg</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -198,12 +198,13 @@
             </div>
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li>
+                    <li class="nav-item">
+                        <a class="logout" onclick="$('#salir\\:link').click()"><i class="fas fa-sign-out-alt">Salir</i></a>
+                                     
                         <h:form id="salir">  
-                            <h:commandLink id="link" action="#{usuarioSesion.cerraSesion()}" ></h:commandLink>
+                            <h:commandLink id="link" action="#{usuarioSesion.cerraSesion()}"></h:commandLink>
                         </h:form>
 
-                        <a class="logout" onclick="$('#salir\\:link').click()" >Logout</a>
                     </li>
                 </ul>
             </div>
