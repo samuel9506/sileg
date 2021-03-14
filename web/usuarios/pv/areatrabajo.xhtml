@@ -21,18 +21,21 @@
                         <c:forEach items="#{categoriasView.listaCategorias}" var="cate">
                             <h:commandLink action="#{categoriasView.seleccionCategoria(cate.idcategoriasProductos)}" >
                                 <div class="col-lg-2 col-md-2 col-sm-2 mb">
-                                    <div class="weather-3 pn centered" style="background:">
+                                    <div class="weather-2 pn centered" style="background:">
 
                                         <br/>
                                         <br/>
                                         <div class="info">
-                                            <div class="row">
+                                            <div class="row" >
                                                 <h3 class="centered">#{cate.nombre}</h3>
                                                 <div class="col-sm-12 col-xs-12 pull-right">
-                                                    <p class="goright"><i class="fa fa-flag"></i> #{categoriasView.cantidadproductoscategoria(cate.idcategoriasProductos)} Productos</p>
+                                                    <p><i class="fa fa-flag"></i> #{categoriasView.cantidadproductoscategoria(cate.idcategoriasProductos)} Productos</p>
                                                 </div>
                                             </div>
                                         </div>
+                                        <img  ></img>   
+                                        <img src="../img/beer.png" alt="SILEG Logo" class="brand-image img-circle elevation-3"  style="width: 100px" padding="10px"/>
+                
                                     </div>
                                 </div>
                             </h:commandLink>
@@ -74,12 +77,12 @@
                                     <ul class="pricing">
                                         <li>Puntos : #{pt.puntos}</li>
                                     </ul>
-                                    
-                                   <a target="blank" href="https://api.whatsapp.com/send?phone=573154422237">
-                                
-                                       <span class="bg-success">Haz tu pedido</span>
-                            </a>
-                              
+
+                                    <a target="blank" href="https://api.whatsapp.com/send?phone=573154422237">
+
+                                        <span class="bg-success">Haz tu pedido</span>
+                                    </a>
+
                                 </div>
                                 <!-- end custombox -->
                             </div>
@@ -88,9 +91,7 @@
                     </h:panelGroup>
                 </div>
 
-                <div class="row">
-                    <a class="btn btn-success btn-xs" data-toggle="modal" href="#myModal"> New Product</a>
-                </div>
+             
 
                 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal1" class="modal fade">
                     <div class="modal-dialog">
@@ -112,112 +113,166 @@
                                         <h:commandButton>
                                             <f:ajax execute="@this" event="click"  render="actualizar-p" listener="#{detallesSession.agregarCarro()}"></f:ajax>     
                                         </h:commandButton>
-                                        
-                                            <table class="responsive ">
-                                                <thead>
+
+                                        <table class="responsive ">
+                                            <thead>
+                                                <tr>
+                                                    <th>Producto</th>
+                                                    <th>Cantidad</th>
+                                                    <th>Precio Venta</th>
+                                                    <th>Subtotal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="#{detallesSession.listaDetalles}" var="detalle">
                                                     <tr>
-                                                        <th>Producto</th>
-                                                        <th>Cantidad</th>
-                                                        <th>Precio Venta</th>
-                                                        <th>Subtotal</th>
+                                                        <td><h:inputText value="#{detalle.fkProductos.nombreProducto}" disabled="true"></h:inputText></td>
+
+                                                        <td>
+                                                            <h:inputText  value="#{detalle.cantidad}">
+                                                                <f:ajax render="totalunidades#{detalle.fkProductos.idproductos}" execute="@this" event="keyup" listener="#{detallesSession.calcularSubtotal(detalle)}"></f:ajax>
+                                                            </h:inputText>
+                                                        </td>
+                                                        <td><h:inputText value="#{detalle.fkProductos.precioVenta}" disabled="true"></h:inputText></td>
+
+                                                        <td><h:inputText id="totalunidades#{detalle.fkProductos.idproductos}" value="#{detalle.totalunidades}" disabled="true"> ></h:inputText></td>
                                                     </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <c:forEach items="#{detallesSession.listaDetalles}" var="detalle">
-                                                        <tr>
-                                                            <td><h:inputText value="#{detalle.fkProductos.nombreProducto}" disabled="true"></h:inputText></td>
+                                                </c:forEach>
 
-                                                            <td>
-                                                                <h:inputText  value="#{detalle.cantidad}">
-                                                                    <f:ajax render="totalunidades#{detalle.fkProductos.idproductos}" execute="@this" event="keyup" listener="#{detallesSession.calcularSubtotal(detalle)}"></f:ajax>
-                                                                </h:inputText>
-                                                            </td>
-                                                            <td><h:inputText value="#{detalle.fkProductos.precioVenta}" disabled="true"></h:inputText></td>
-
-                                                            <td><h:inputText id="totalunidades#{detalle.fkProductos.idproductos}" value="#{detalle.totalunidades}" disabled="true"> ></h:inputText></td>
-                                                        </tr>
-                                                    </c:forEach>
-
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                   <h:commandButton  action="#{detallesSession.agregarFactura()}" class="btn btn-outline-primary float-right  mt-2 mb-2 mr-2"><i class="fas fa-save"></i> Guardar y enviar</h:commandButton>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <h:commandButton  action="#{detallesSession.agregarFactura()}" class="btn btn-outline-primary float-right  mt-2 mb-2 mr-2"><i class="fas fa-save"></i> Guardar y enviar</h:commandButton>
                                 </h:form> 
                             </div>
 
                         </div>
                     </div>
                 </div>
-
-
-                <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Registro Producto Nuevo</h4>
-                            </div>
-                            <h:form  id="cargaArchivo" enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    <div class="login-wrap">
-                                        <h:selectOneMenu id="idCat" value="#{productosRequest.idCategoria}" class="form-control">
-                                            <f:selectItems itemLabel="#{cat.nombre}" itemValue="#{cat.idcategoriasProductos}" value="#{categoriasView.listaCategorias}" var="cat"></f:selectItems>
-                                        </h:selectOneMenu>
-                                        <br/>
-                                        <h:inputText  value="#{productosRequest.producto.nombreProducto}" class="form-control" html5:placeholder="Nombre" html5:autofocus="true"/>
-                                        <br/>
-                                        <h:inputText  value="#{productosRequest.producto.presentacion}" class="form-control" html5:placeholder="Presentacion" html5:autofocus="true"/>
-                                        <br/>
-                                        <h:inputText value="#{productosRequest.producto.existencias}" class="form-control" html5:placeholder="Cantidad" html5:autofocus="true"/>
-                                        <br/>
-                                        <h:inputText  value="#{productosRequest.producto.precioCompra}"  class="form-control" html5:placeholder="Valor Compra" html5:autofocus="true"/>
-                                        <br/>
-                                        <h:inputText  value="#{productosRequest.producto.precioVenta}"  class="form-control" html5:placeholder="Valor Venta" html5:autofocus="true"/>
-
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">
-
-                                            <div class="project-wrapper">
-                                                <div class="project">
-                                                    <div class="photo-wrapper">
-                                                        <div class="photo">
-                                                            <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
-
-                                                                <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
-
-                                                            </a>
-                                                        </div>
-                                                        <div class="overlay"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-6" style="text-align: center;">
-                                            <h:inputFile id="cargaImagen" style="display: none"  onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}"  >
-
-                                            </h:inputFile>
-                                            <h:commandButton id="btnCargaImagen"  style="display: none" action="#{categoriasView.accion(productosRequest.idCategoria)}" >
-                                                <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
-                                            </h:commandButton>
-
-                                            <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
-                                        </div>
-
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer">
-                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancel</button>
-                                    <h:commandButton onclick="window.location.reload()" action="#{productosRequest.crearProducto()}" class="btn btn-theme" value="Register"/>
-                                </div>
-                            </h:form>
+                <!-- inicio modal para peticion -->
+                <div>
+                    <div>
+                        <div class="btn-group btn-group-justified" >
+                            <a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#peticion"  >
+                                Realizar Peticion
+                            </button>
+                            </a>
+                            <a>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#peticion"  >
+                                Realizar Peticion
+                            </button>
+                            </a>
+                            <a>
+                            <button type="button" class="btn btn-primary btn-group" data-toggle="modal" data-target="#peticion"  >
+                                Realizar Peticion
+                            </button>
+                            </a>
                         </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="peticion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">PETICION PARA LICORES EL GATO</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Ingresa tu correo.</p>
+                                        <h:inputText value="#{campañaFidelizacionRequest.correo}" html5:placeholder="correo" class="form-control placeholder-no-fix"></h:inputText>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Asunto.</p>
+                                        <h:inputText value="#{campañaFidelizacionRequest.asunto1}" html5:placeholder="Describe el asunto" class="form-control placeholder-no-fix"></h:inputText>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Mensaje.</p>
+                                        <h:inputTextarea value="#{campañaFidelizacionRequest.mensaje1}" html5:placeholder="Describe brevemente tu peticion" class="form-control placeholder-no-fix" cols="4" rows="4"></h:inputTextarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                                        <h:commandButton action="#{campañaFidelizacionRequest.generarPeticion()}" class="btn btn-theme"  value="Enviar" ></h:commandButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal -->
+
+
                     </div>
                 </div>
+                <div>
+                    <div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="peticion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">PETICION PARA LICORES EL GATO</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Ingresa tu correo.</p>
+                                        <h:inputText value="#{campañaFidelizacionRequest.correo}" html5:placeholder="correo" class="form-control placeholder-no-fix"></h:inputText>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Asunto.</p>
+                                        <h:inputText value="#{campañaFidelizacionRequest.asunto1}" html5:placeholder="Describe el asunto" class="form-control placeholder-no-fix"></h:inputText>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Mensaje.</p>
+                                        <h:inputTextarea value="#{campañaFidelizacionRequest.mensaje1}" html5:placeholder="Describe brevemente tu peticion" class="form-control placeholder-no-fix" cols="4" rows="4"></h:inputTextarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                                        <h:commandButton action="#{campañaFidelizacionRequest.generarPeticion()}" class="btn btn-theme"  value="Enviar" ></h:commandButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal -->
 
 
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="peticion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">PETICION PARA LICORES EL GATO</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Ingresa tu correo.</p>
+                                        <h:inputText value="#{campañaFidelizacionRequest.correo}" html5:placeholder="correo" class="form-control placeholder-no-fix"></h:inputText>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Asunto.</p>
+                                        <h:inputText value="#{campañaFidelizacionRequest.asunto1}" html5:placeholder="Describe el asunto" class="form-control placeholder-no-fix"></h:inputText>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Mensaje.</p>
+                                        <h:inputTextarea value="#{campañaFidelizacionRequest.mensaje1}" html5:placeholder="Describe brevemente tu peticion" class="form-control placeholder-no-fix" cols="4" rows="4"></h:inputTextarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                                        <h:commandButton action="#{campañaFidelizacionRequest.generarPeticion()}" class="btn btn-theme"  value="Enviar" ></h:commandButton>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- modal -->
+
+
+                    </div>
+                </div>
+                <!-- modal respuesta de edicion campañas -->
+
+           
             </section>
         </section>
 
