@@ -48,6 +48,7 @@
                                                 <th>precio compra</th>
                                                 <th>precio venta</th>
                                                 <th>fecha vencimiento</th>
+                                                <th>Opciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -103,23 +104,23 @@
 
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}"  html5:autofocus="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}"  ></h:inputText>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}"  html5:autofocus="true"  ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" html5:autofocus="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
-                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.producto.presentacion}" ></h:inputText>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.producto.presentacion}"  html5:autofocus="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
-                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.producto.precioCompra}" ></h:inputText>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.producto.precioCompra}"  html5:autofocus="true"></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
@@ -132,6 +133,16 @@
                                         <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
+                                 <div class="col-md-6" style="text-align: center;">
+                                            <h:inputFile id="cargaImagen" style="display: none"  onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}" >
+
+                                            </h:inputFile>
+                                     <h:commandButton id="btnCargaImagen"  style="display: none" action="#{categoriasView.accion(productosRequest.id_categoria)}" >
+                                                <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
+                                            </h:commandButton>
+
+                                            <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
+                                        </div>
 
                                 <div class="modal-footer">
                                     <h:commandButton action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
@@ -161,23 +172,23 @@
                                     <h:inputHidden value="#{productosRequest.productoEditar.idproductos}"></h:inputHidden>
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.productoEditar.nombreProducto}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.productoEditar.nombreProducto}"  html5:autofocus="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.productoEditar.precioVenta}"  ></h:inputText>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.productoEditar.precioVenta}"  html5:autofocus="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.productoEditar.existencias}" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.productoEditar.existencias}"  html5:autofocus="true"></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
-                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.productoEditar.presentacion}" ></h:inputText>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.productoEditar.presentacion}" html5:autofocus="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
-                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.productoEditar.precioCompra}" ></h:inputText>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.productoEditar.precioCompra}"  html5:autofocus="true"></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>

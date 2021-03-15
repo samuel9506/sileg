@@ -98,6 +98,7 @@
                                                             <th>Cantidad</th>
                                                             <th>Precio Venta</th>
                                                             <th>Subtotal</th>
+                                                            <th>editar</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -113,6 +114,7 @@
                                                                 <td><h:inputText value="#{detalle.fkProductos.precioVenta}" disabled="true"></h:inputText></td>
 
                                                                 <td><h:inputText id="totalunidades#{detalle.fkProductos.idproductos}" value="#{detalle.totalunidades}" disabled="true"> ></h:inputText></td>
+                                                                <td><h:commandButton value="Eliminar" class="btn btn-danger" action="#{detallesSession.eliminaDetalles(detalle)}"></h:commandButton></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>

@@ -82,7 +82,7 @@ font-family: 'Caladea', serif;
 
 /* modal para inicio de sesión */
     .modal-header{
-        
+        height: 5rem;
         background: rgb(9,73,121);
         background: linear-gradient(321deg, rgba(41,38,38,1) 2%, rgba(9,67,110,1) 35%, rgba(10,42,66,1) 82%, rgba(5,5,5,1) 98%);
         padding-left: 43%;

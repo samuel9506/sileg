@@ -21,20 +21,20 @@
                         <c:forEach items="#{categoriasView.listaCategorias}" var="cate">
                             <h:commandLink action="#{categoriasView.seleccionCategoria(cate.idcategoriasProductos)}" >
                                 <div class="col-lg-2 col-md-2 col-sm-2 mb">
-                                    <div class="weather-2 pn centered" style="background:">
+                                    <div class="weather-3 pn centered">
 
                                         <br/>
                                         <br/>
                                         <div class="info">
                                             <div class="row" >
-                                                <h3 class="centered">#{cate.nombre}</h3>
+                                                <h3 class="centered" style="font-weight:bold;color: #001226">#{cate.nombre}</h3>
                                                 <div class="col-sm-12 col-xs-12 pull-right">
-                                                    <p><i class="fa fa-flag"></i> #{categoriasView.cantidadproductoscategoria(cate.idcategoriasProductos)} Productos</p>
+                                                    <p><i class="fa fa-beer"></i> #{categoriasView.cantidadproductoscategoria(cate.idcategoriasProductos)} Productos</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <img  ></img>   
-                                        <img src="../img/beer.png" alt="SILEG Logo" class="brand-image img-circle elevation-3"  style="width: 100px" padding="10px"/>
+                                         
+                                        
                 
                                     </div>
                                 </div>
@@ -78,10 +78,7 @@
                                         <li>Puntos : #{pt.puntos}</li>
                                     </ul>
 
-                                    <a target="blank" href="https://api.whatsapp.com/send?phone=573154422237">
-
-                                        <span class="bg-success">Haz tu pedido</span>
-                                    </a>
+                                    <a target="blank" class="d-inline-block btn btn btn-primary" href="https://api.whatsapp.com/send?phone=573154422237">Haz tu pedido</a>
 
                                 </div>
                                 <!-- end custombox -->

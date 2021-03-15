@@ -5,30 +5,21 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <ui:composition>
         <header class="header black-bg">
-            <div class="sidebar-toggle-box" style="left: 100px" >
-                
-                <img src="../img/beer.png" alt="SILEG Logo" class="brand-image img-circle elevation-3"  style="width: 50px" padding="10px"/>
-                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation" style="padding-left: 30px"></div>
-                <a href="#" class="logo" style="padding-right: 19px;  "  ><b>SILEG</b></a>
+            <div class="sidebar-toggle-box">
+                <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
             </div>
             <!--logo start-->
-            
+            <a href="index.html" class="logo"><b>SILEG</b></a>
             <!--logo end-->
-            <div class="nav notify-row" id="top_menu">
-                <!--  notification start -->
-                
-                <!--  notification end -->
-            </div>
+            
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li class="nav-item">
-                        <a class="logout" onclick="$('#salir\\:link').click()"><i class="fas fa-sign-out-alt">Salir</i></a>
-                                     
+                    <li>
                         <h:form id="salir">  
-                            <h:commandLink id="link" action="#{usuarioSesion.cerraSesion()}"></h:commandLink>
+                            <h:commandLink id="link" action="#{usuarioSesion.cerraSesion()}" ></h:commandLink>
                         </h:form>
 
-                        <a class="logout" onclick="$('#salir\\:link').click()" >cerrar sesion</a>
+                        <a class="logout" onclick="$('#salir\\:link').click()" >Salir</a>
                     </li>
                 </ul>
             </div>

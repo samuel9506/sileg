@@ -39,6 +39,7 @@ public class ProductosRequest implements Serializable{
     private Productos productoEditar = new Productos();
     private List<Productos> listaProductos = new Vector();
     private Integer idCategoria;
+     private int id_categoria = 0;
     
     public ProductosRequest(ProductosFacadeLocal productosFacadeLocal) {
         this.productosFacadeLocal = productosFacadeLocal;
@@ -127,5 +128,14 @@ public class ProductosRequest implements Serializable{
     public void setProductoEditar(Productos productoEditar) {
         this.productoEditar = productoEditar;
     }
+
+    public int getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(int id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+    
     
 }

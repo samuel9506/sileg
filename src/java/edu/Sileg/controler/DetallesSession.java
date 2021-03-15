@@ -36,6 +36,7 @@ import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -161,6 +162,32 @@ public class DetallesSession implements Serializable {
         listaDetalles = new ArrayList<Detallesfactura>();
 
     }
+    
+     public void editar(Detallesfactura detallesfactura){
+        detalles = detallesfactura;
+    }
+    
+    public void editarDetalles(){
+        detalles.setFkFactura(facturaFacadeLocal.find(idFactura));
+        detallesfacturaFacadeLocal.edit(detalles);
+        listaDetalles.clear();
+        listaDetalles.addAll(detallesfacturaFacadeLocal.findAll());
+        
+        
+    }
+    
+      public void eliminaDetalles(Detallesfactura detallesfactura){
+         String message="";
+      
+        try{
+           detallesfacturaFacadeLocal.remove(detalles);
+        listaDetalles.remove(detalles); 
+        }catch (Exception e) {
+       message =  "swall('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";
+            
+        }
+        PrimeFaces.current().executeScript(message);
+      }
     
      public void descargaListado() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
