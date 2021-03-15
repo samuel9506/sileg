@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Facelet Title</title>
@@ -15,7 +16,7 @@
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        
+
 
                         <div class="card card-info col-sm-12 pl-0 pr-0 col-md-10">
                             <div class="card-header">
@@ -36,7 +37,9 @@
                                     <div class="row">
                                         <div class="col-sm-12">
                                             <div class="input-group mb-3">
+                                                
                                                 <p>#{detallesSession.factu.idUsuario.nombres}</p>
+                                                
                                             </div>
                                         </div>
                                         <div class="col-sm-6">
@@ -44,7 +47,7 @@
                                                 <span class="input-group-text"><i class="fas fa-calendar-day"></i></span>
 
                                                 <h:outputLabel for="fecha"></h:outputLabel>
-                                                <h:inputText class="form-control" id="fecha" value="#{detallesSession.factu.fecha}" >
+                                                <h:inputText class="form-control" id="fecha" value="#{detallesSession.factu.fecha}" html5:autofocus="true">
                                                     <f:convertDateTime pattern="yyyy-MM-dd" timeZone="America/Bogota" type="date"></f:convertDateTime>
                                                 </h:inputText>
                                             </div>
@@ -69,6 +72,7 @@
                                             </h:selectOneMenu>
                                             <h:commandButton value="add" class="btn btn-primary" action="#{detallesSession.agregarProducto()}"></h:commandButton>
                                             <br></br>
+                                            
                                             <h:selectOneMenu value="#{detallesSession.id}">
                                                 <f:selectItems 
                                                     value="#{detallesSession.listarUsuarios()}" 
@@ -77,12 +81,12 @@
                                                     itemValue="#{usuario.id}">
                                                 </f:selectItems>
                                             </h:selectOneMenu>
-
+                                        </c:if>
                                         </div>
                                     </div>
-                                <br/>
-                                <br/>
-                                    
+                                    <br/>
+                                    <br/>
+
 
                                     <div class="row">
                                         <div class="col-12">
@@ -103,7 +107,7 @@
 
                                                                 <td>
                                                                     <h:inputText  value="#{detalle.cantidad}">
-                                                                        <f:ajax render="totalunidades#{detalle.fkProductos.idproductos}" execute="@this" event="keyup" listener="#{detallesSession.calcularSubtotal(detalle)}"></f:ajax>
+                                                                        <f:ajax  render="totales totalunidades#{detalle.fkProductos.idproductos}" execute="@this" event="keyup" listener="#{detallesSession.calcularSubtotal(detalle)}"></f:ajax>
                                                                     </h:inputText>
                                                                 </td>
                                                                 <td><h:inputText value="#{detalle.fkProductos.precioVenta}" disabled="true"></h:inputText></td>
@@ -121,30 +125,32 @@
 
                                         <div class="col-12">
                                             <div class="table-responsive">
-                                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                                <h:panelGroup id="totales">
+                                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="bg-gradient-primary text-white">Subtotal</th>
-                                                            <th>#{detallesSession.factu.subtotal}</th>
-                                                        </tr>
-                                                        <tr>
-                                                            <th class="bg-gradient-primary text-white">%IVA</th>
-                                                            <td>#{detallesSession.factu.iva}</td>
-                                                        </tr>
+                                                        <thead>
 
-                                                        <tr>
-                                                            <th class="bg-gradient-primary text-white">TOTAL</th>
-                                                            <td>#{detallesSession.factu.total}</td>
-                                                        </tr>
-                                                    </thead>
+                                                            <tr>
+                                                                <th class="bg-gradient-primary text-white">Subtotal</th>
+                                                                <th>#{detallesSession.factu.subtotal}</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th class="bg-gradient-primary text-white">%IVA</th>
+                                                                <td>#{detallesSession.factu.iva}</td>
+                                                            </tr>
 
-                                                </table>
+                                                            <tr>
+                                                                <th class="bg-gradient-primary text-white">Total</th>
+                                                                <td>#{detallesSession.factu.total}</td>
+                                                            </tr>
+
+                                                        </thead>
+                                                    </table>
+                                                </h:panelGroup>
                                             </div>
                                         </div>
                                     </div>
                                     <h:commandButton  action="#{detallesSession.agregarFactura()}" class="btn btn-danger" value="guardar"></h:commandButton>
-
                                 </h:form>
                             </div>
                         </div>

@@ -52,6 +52,7 @@ public class RegistroRequest implements Serializable {
         String mensajeRequest;
 
         try {
+            usuReg.setFechaRegistro(new Date());
             Rol selectrol = rolFacadeLocal.find(id_rol);
             usuReg.setFkRol(selectrol);
             usuarioFacadeLocal.create(usuReg);

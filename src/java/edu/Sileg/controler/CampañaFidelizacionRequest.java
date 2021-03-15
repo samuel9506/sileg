@@ -7,6 +7,7 @@ package edu.Sileg.controler;
 
 import edu.Sileg.entity.Campañasfidelizacion;
 import edu.Sileg.facade.CampañasfidelizacionFacadeLocal;
+import edu.Sileg.utilidades.Peticion;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +31,16 @@ public class CampañaFidelizacionRequest implements Serializable {
     }
     
     @EJB
-    CampañasfidelizacionFacadeLocal campañasfidelizacionFacadeLocal;
+    private CampañasfidelizacionFacadeLocal campañasfidelizacionFacadeLocal;
     private Campañasfidelizacion campfid = new Campañasfidelizacion();
     private Campañasfidelizacion campfidEditar = new Campañasfidelizacion();
     private List<Campañasfidelizacion> listaCampañas = new ArrayList();
-   
+   //Atributos para envio de peticion//
+    private String asunto1;
+    private String correo;
+    private String mensaje1;
+    
+    
     
     
     @PostConstruct
@@ -60,7 +66,10 @@ public class CampañaFidelizacionRequest implements Serializable {
         PrimeFaces.current().executeScript(mensaje);
     }
     
-    
+    public void generarPeticion(){
+        Peticion.enviarPeticion(asunto1, mensaje, correo);
+        
+    }
     
     
     
@@ -100,6 +109,46 @@ public class CampañaFidelizacionRequest implements Serializable {
 
     public void setCampfidEditar(Campañasfidelizacion campfidEditar) {
         this.campfidEditar = campfidEditar;
+    }
+
+    public CampañasfidelizacionFacadeLocal getCampañasfidelizacionFacadeLocal() {
+        return campañasfidelizacionFacadeLocal;
+    }
+
+    public void setCampañasfidelizacionFacadeLocal(CampañasfidelizacionFacadeLocal campañasfidelizacionFacadeLocal) {
+        this.campañasfidelizacionFacadeLocal = campañasfidelizacionFacadeLocal;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public String getAsunto1() {
+        return asunto1;
+    }
+
+    public void setAsunto1(String asunto1) {
+        this.asunto1 = asunto1;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getMensaje1() {
+        return mensaje1;
+    }
+
+    public void setMensaje1(String mensaje1) {
+        this.mensaje1 = mensaje1;
     }
     
 }

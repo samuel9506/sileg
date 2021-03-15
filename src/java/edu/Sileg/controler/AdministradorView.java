@@ -8,7 +8,9 @@
 package edu.Sileg.controler;
 
 
+import edu.Sileg.entity.Rol;
 import edu.Sileg.entity.Usuario;
+import edu.Sileg.facade.RolFacadeLocal;
 import edu.Sileg.facade.UsuarioFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -35,10 +37,16 @@ public class AdministradorView implements Serializable {
     private ArrayList<Usuario> listaUsuarios = new ArrayList<>();
     private Usuario usuarioSelect = new Usuario();
     private Usuario usuReg = new Usuario();
+    private int id_rol=0;
+    private Integer idrol;
+    private ArrayList<Rol> listaroles = new ArrayList<>();
     
 
     @Inject
     UsuarioSesion usuarioSesion;
+    
+      @EJB
+    RolFacadeLocal rolFacadeLocal;
 
     @PostConstruct
     public void cargaUsuarios() {
@@ -78,11 +86,11 @@ public class AdministradorView implements Serializable {
     }
 
     public void registrarUsuario() {
-        String mensaje = "";
+        String mensaje="";
         try {
-            
-            
             usuReg.setFechaRegistro(new Date());
+            Rol selectrol = rolFacadeLocal.find(id_rol);
+            usuReg.setFkRol(selectrol);
             usuarioFacadeLocal.create(usuReg);
             listaUsuarios.clear();
             listaUsuarios.addAll(usuarioFacadeLocal.findAll());
@@ -122,6 +130,30 @@ public class AdministradorView implements Serializable {
 
     public void setUsuReg(Usuario usuReg) {
         this.usuReg = usuReg;
+    }
+
+    public int getId_rol() {
+        return id_rol;
+    }
+
+    public void setId_rol(int id_rol) {
+        this.id_rol = id_rol;
+    }
+
+    public Integer getIdrol() {
+        return idrol;
+    }
+
+    public void setIdrol(Integer idrol) {
+        this.idrol = idrol;
+    }
+
+    public ArrayList<Rol> getListaroles() {
+        return listaroles;
+    }
+
+    public void setListaroles(ArrayList<Rol> listaroles) {
+        this.listaroles = listaroles;
     }
 
   

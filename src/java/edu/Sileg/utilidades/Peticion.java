@@ -19,8 +19,8 @@ import javax.mail.internet.MimeMessage;
  *
  * @author SENA
  */
-public class Email {
-    public static void sendMasivos(String para ) {
+public class Peticion {
+    public static void enviarPeticion(String Asunto, String Mensaje, String correo ) {
         final String user = "licores.sileg365@gmail.com";//cambiará en consecuencia al servidor utilizado
         final String pass = "Figaro01062018";
 
@@ -44,14 +44,16 @@ public class Email {
         try {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(user));
-            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse(para));
+            message.addRecipients(Message.RecipientType.TO, InternetAddress.parse("fabiansofia1994@gmail.com"));
             message.setSubject("Informacion Importante <-LICORES EL GATO->");
             java.util.Date fecha = new Date();
 
             message.setContent(
-                    "<center><img src='https://scontent.fbog15-1.fna.fbcdn.net/v/t1.0-9/101882631_260772118467664_7980011983543530032_o.jpg?_nc_cat=107&ccb=3&_nc_sid=e3f864&_nc_eui2=AeFtZY7oqKv3CV_bv61XjRYmZgvObhIppeRmC85uEiml5JJsCVAD_r9l7tk8R9XC72sZwFsZ539sPNcRUHynmYBG&_nc_ohc=1lbisRLQpr8AX_GbZCX&_nc_ht=scontent.fbog15-1.fna&oh=9a2484fac5e61024dbcdd2d095d06da8&oe=604AEBA5' title='Licores El Gato'></center>"
+                    "<center>' title='Licores El Gato'></center>"
                     + "<h3> . "
-                 
+                    + "De: " + correo  + "<br/>"
+                    + "Asunto" + Asunto + "<br/>"
+                    + Mensaje
                     + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " - "
                     + fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getYear(), "text/html");
 

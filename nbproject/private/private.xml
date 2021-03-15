@@ -3,15 +3,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/plugins/fontawesome-free/css/svg-with-js.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/dist/css/adminlte.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/dist/css/adminlte.min.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/dist/css/alt/adminlte.core.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/plugins/fontawesome-free/css/svg-with-js.min.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/dist/css/alt/adminlte.core.min.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/css/zabuto_calendar.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/css/style.css</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/lib/fullcalendar/bootstrap-fullcalendar.css</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/registro/registro.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/UsuarioSesion.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Ventas/pv/areatrabajo.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/WEB-INF/template/maqueta.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/DetallesSession.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Administrador/pv/areatrabajo.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/WEB-INF/template/menuvertical.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/AdministradorView.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/RegistroRequest.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Administrador/index.xhtml</file>
         </group>
     </open-files>
 </project-private>
