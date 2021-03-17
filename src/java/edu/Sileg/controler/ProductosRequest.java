@@ -17,6 +17,7 @@ import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import org.primefaces.PrimeFaces;
 
 
@@ -33,6 +34,9 @@ public class ProductosRequest implements Serializable{
     
     @EJB
     CatProductosFacadeLocal catProductosFacadeLocal;
+    
+    @Inject
+    CategoriasView categoriasView;
     
     private String mensaje = "";
     private Productos producto = new Productos();
@@ -57,8 +61,9 @@ public class ProductosRequest implements Serializable{
     }
     
     public void crearProducto(){
-        System.out.println("aca llego");
-        producto.setFkCategoria(catProductosFacadeLocal.find(idCategoria));
+       
+        producto.setFkCategoria(catProductosFacadeLocal.find(id_categoria));
+        producto.setImagenRuta(categoriasView.getRutaImg());
         productosFacadeLocal.create(producto);
         listaProductos.add(producto);
     
@@ -66,7 +71,7 @@ public class ProductosRequest implements Serializable{
     
     public void eliminarProducto(Productos producto){
         try{
-           productosFacadeLocal.remove(producto);
+        productosFacadeLocal.remove(producto);
         listaProductos.remove(producto); 
         }catch (Exception e) {
        mensaje =  "swall('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";

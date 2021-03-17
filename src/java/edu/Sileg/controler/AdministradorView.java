@@ -66,7 +66,7 @@ public class AdministradorView implements Serializable {
 
     }
 
-    public void usuarioSelecionado(Usuario usuSelect) {
+    public void usuarioSeleccionado(Usuario usuSelect) {
         usuarioSelect = usuSelect;
     }
 

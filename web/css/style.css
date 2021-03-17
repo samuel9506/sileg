@@ -1142,7 +1142,9 @@ PANELS CONFIGURATIONS
 
 /* Weather 3 */
 .weather-3 {
-	background-image: url(../img/fondobe.jpg);
+	background-image: url(../img/logo.jpeg);
+       background-size: contain;
+        background-position: center;
 }
 
 .weather-3 i {
@@ -1157,6 +1159,7 @@ PANELS CONFIGURATIONS
 }
 .weather-3 .info {
 	background: #f2f2f2;
+        opacity: 0.9;
 }
 .weather-3 .info i {
 	font-size: 15px;
@@ -1172,7 +1175,7 @@ PANELS CONFIGURATIONS
 	margin-left: 10px;
 	margin-right: 10px;
 	margin-bottom: 16px;
-	color: #c2c2c2;
+	color: #333;
 	font-size: 15px;
 	font-weight: 700;
 }
@@ -1666,7 +1669,7 @@ PANELS CONFIGURATIONS
   display: block;
   position: relative;
   overflow: hidden;
-  background-color: #4ECDC4;
+  background-color: #fff;
   -webkit-transition: background-color 0.4s;
   -moz-transition: background-color 0.4s;
   -o-transition: background-color 0.4s;
@@ -1686,7 +1689,7 @@ PANELS CONFIGURATIONS
 }
 
 .project:hover .photo-wrapper {
-  background-color: #4ECDC4;
+  
 	background-image:url(../img/zoom.png);
 	background-repeat:no-repeat;
 	background-position:center;

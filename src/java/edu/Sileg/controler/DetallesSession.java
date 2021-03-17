@@ -221,7 +221,40 @@ public class DetallesSession implements Serializable {
             System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + q.getMessage());
         }
         }
+     
+      public void descargaCertificado( String idFactura) {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext context = facesContext.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+        HttpServletResponse response = (HttpServletResponse) context.getResponse();
+        response.setContentType("application/pdf");
+
+        try {
+            Map parametro = new HashMap();
+            parametro.put("idFactura",idFactura);
+            Connection conec = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sileg", "root", "");
+           
+            File jasper = new File(context.getRealPath("/WEB-INF/classes/edu/Sileg/reportes/ReporteFactura.jasper"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametro, conec);
+
+            HttpServletResponse hsr = (HttpServletResponse) context.getResponse();
+            hsr.addHeader("Content-disposition", "attachment; filename=CertificadoIndividual.pdf");
+            OutputStream os = hsr.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jp, os);
+            os.flush();
+            os.close();
+            facesContext.responseComplete();
+
+        } catch (JRException e) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + e.getMessage());
+        } catch (IOException i) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + i.getMessage());
+        } catch (SQLException q) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + q.getMessage());
+        }
    
+      }
 
     public Detallesfactura getDetalles() {
         return detalles;

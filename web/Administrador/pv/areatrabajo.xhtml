@@ -5,145 +5,155 @@
       xmlns:html5="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
+        <!-- CONTENIDO HEADER SECCION PRINCIPAL-->
         <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-
-                    <div class="col-12 col-md-6">
-                        <h1 class="m-0 text-dark">Usuarios</h1>
-                    </div><!-- /.col -->
-
-                </div><!-- /.row -->
-            </div><!-- /.container-fluid -->
+            <h1>Productos</h1>
         </div>
-        <!-- /.content-header -->
-        <!-- Main content -->
+        <!-- /.CONTENIDO HEADER SECCION PRINCIPAL -->
 
-
+        <!-- SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
         <div class="content">
             <div class="container-fluid">
-                <div class="row mb-2">
+                <!--CONTENIDO QUE SE SOBRE ESCRIBE EN CADA PAGINA......-->
+                <div class="content"> 
                     <div class="col">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-12 col-md-6">
-                                        <h2>Clientes</h2>
+                                        <h2 id="tabla-categorias">Lista de Usuarios </h2>
                                     </div>
-                                    <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
+                                     <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
                                         <a class="btn btn-success btn" data-toggle="modal" data-target="#myModal" href="#"> New User</a>
 
                                     </div>
-
                                 </div>
                             </div>
+                            <!-- /TABLA DE PROVEEDORES -->
+                            <div class="card-body">
+                                <table class="table table-bordered table-hover">
+
+                                    <thead >
+                                        <tr>
+                                            <th> <i class="fas fa-address-card"></i>documento</th>
+                                            <th class="hidden-phone"><i class="fas fa-user-tie"></i> Nombres / Apellidos</th>
+                                            <th><i class="fa fa-envelope-o"></i> Correo</th>
+                                            <th><i class="fas fa-calendar-alt"></i> Fecha registro</th>
+                                            <th><i class=" fa fa-edit"></i> Opciones</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <h:form id="listaUsuarios">
+                                            <c:forEach items="#{administradorView.listaUsuarios}" var="usu">
+
+                                                <tr>
+                                                    <td>
+                                                        #{usu.tipoDocumento} #{usu.documento}</td>
+                                                    <td class="hidden-phone">#{usu.nombres} #{usu.apellidos}</td>
+                                                    <td> #{usu.correo} </td>
+                                                    <td><span class="label label-info label-mini">
+                                                            #{usu.fechaRegistro}
+                                                        </span></td>
+                                                    <td>
+
+                                                        <c:if test="#{usuarioSesion.usuLogin.documento != usu.documento}">
+                                                            <h:commandButton value="Eliminar" class="btn btn-danger" action="#{administradorView.removerUsuario(usu)}" ></h:commandButton> 
+                                                            <h:commandButton class="btn btn-warning" value="Editar" html5:data-toggle="modal" html5:data-target="#editar-p"  >
+                                                                <f:ajax execute="@this" event="click"  render="usuEdit" listener="#{administradorView.usuarioSeleccionado(usu)}"></f:ajax>
+                                                            </h:commandButton>
+
+
+
+                                                        </c:if>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </h:form>
+                                    </tbody>
+                                </table>  
+                            </div>
+                            <!-- /.card-body -->
                         </div>
-                        <!-- /.card-header -->
-                        <section id="main-content">
-                            <section class="wrapper">
-
-                                <div class="row mt">
-                                    <div class="col-md-12">
-                                        <div class="content-panel">
-                                            <table class="table table-striped table-advance table-hover">
-                                                <thead>
-                                                    <tr>
-                                                        <th><i class="fa fa-bullhorn"></i>documento</th>
-                                                        <th class="hidden-phone"><i class="fa fa-question-circle"></i> Nombres / Apellidos</th>
-                                                        <th><i class="fa fa-bookmark"></i> Correo</th>
-                                                        <th><i class=" fa fa-edit"></i> Fecha registro</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <h:form id="listaUsuarios">
-                                                        <c:forEach items="#{administradorView.listaUsuarios}" var="usu">
-
-                                                            <tr>
-                                                                <td>
-                                                                    #{usu.tipoDocumento} #{usu.documento}</td>
-                                                                <td class="hidden-phone">#{usu.nombres} #{usu.apellidos}</td>
-                                                                <td> #{usu.correo} </td>
-                                                                <td><span class="label label-info label-mini">
-                                                                        #{usu.fechaRegistro}
-                                                                    </span></td>
-                                                                <td>
-
-                                                                    <c:if test="#{usuarioSesion.usuLogin.documento != usu.documento}">
-                                                                        <h:commandButton  id="tbl#{usu.documento}" action="#{administradorView.removerUsuario(usu)}"></h:commandButton>   
-                                                                        <h:commandButton style="display: none" id="usuTbl#{usu.documento}" action="#{administradorView.usuarioSelecionado(usu)}"></h:commandButton>  
+                    </div>
+                </div>
+                <!--/tabla categorias -->
+            </div>
+        </div>
 
 
-                                                                        <button type="button" onclick="$('#listaUsuarios\\:usuTbl#{usu.documento}').click()" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                                                                    </c:if>
-                                                                </td>
-                                                            </tr>
-                                                        </c:forEach>
-                                                    </h:form>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <!-- /content-panel -->
-                                    </div>
+    </div>
 
-                                    <!-- /col-md-12 -->
+    <div class="container">
+        <div class="row">
+
+            <div class="modal fade" id="editar-p" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Actualizar Usuarios</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <h:form id="usuEdit" role="form" class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Tipo documento</label>
+                                <div class="col-lg-6">
+                                    <input type="text" disabled="true"  placeholder="#{administradorView.usuarioSelect.tipoDocumento}" id="addr1" class="form-control"/>
                                 </div>
-                                <div class="col-lg-8 col-lg-offset-2 detailed mt">
-                                    <h4 class="mb">Actualizar Information</h4>
-                                    <h:form role="form" class="form-horizontal">
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Tipo documento</label>
-                                            <div class="col-lg-6">
-                                                <input type="text" disabled="true"  placeholder="#{administradorView.usuarioSelect.tipoDocumento}" id="addr1" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Numero Documento</label>
-                                            <div class="col-lg-6">
-                                                <input type="text" disabled="true" placeholder="#{administradorView.usuarioSelect.documento}" id="addr2" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Nombres</label>
-                                            <div class="col-lg-6">
-                                                <h:inputText value="#{administradorView.usuarioSelect.nombres}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Apellidos</label>
-                                            <div class="col-lg-6">
-                                                <h:inputText value="#{administradorView.usuarioSelect.apellidos}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Email</label>
-                                            <div class="col-lg-6">
-                                                <input type="text" disabled="true" placeholder="#{administradorView.usuarioSelect.correo}" id="email" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="col-lg-2 control-label">Clave</label>
-                                            <div class="col-lg-6">
-                                                <h:inputSecret value="#{administradorView.usuarioSelect.clave}" class="form-control"/>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-lg-offset-2 col-lg-10">
-                                                <h:commandButton class="btn btn-theme" action="#{administradorView.actualizarUsuario()}" value="Save"></h:commandButton>
-                                            </div>
-                                        </div>
-                                    </h:form>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Numero Documento</label>
+                                <div class="col-lg-6">
+                                    <input type="text" disabled="true" placeholder="#{administradorView.usuarioSelect.documento}" id="addr2" class="form-control"/>
                                 </div>
-                            </section>
-                        </section>
-                        <!-- /.card-body -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Nombres</label>
+                                <div class="col-lg-6">
+                                    <h:inputText value="#{administradorView.usuarioSelect.nombres}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Apellidos</label>
+                                <div class="col-lg-6">
+                                    <h:inputText value="#{administradorView.usuarioSelect.apellidos}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Email</label>
+                                <div class="col-lg-6">
+                                    <input type="text" disabled="true" placeholder="#{administradorView.usuarioSelect.correo}" id="email" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label">Clave</label>
+                                <div class="col-lg-6">
+                                    <h:inputSecret value="#{administradorView.usuarioSelect.clave}" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-offset-2 col-lg-10">
+                                    <h:commandButton class="btn btn-theme" action="#{administradorView.actualizarUsuario()}" value="Save"></h:commandButton>
+                                </div>
+                            </div>
+
+                        </h:form> 
+
+
+
                     </div>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+
+        </div>
     </div>
+
+
+
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -153,10 +163,7 @@
                 </div>
                 <div class="modal-body">
                     <h:form id="registro" class="form-login">
-                       <h:selectOneMenu id="lis" value="#{administradorView.id_rol}" class="form-control">
-                            <f:selectItems itemLabel="#{roles.nombre}" itemValue="#{roles.idrol}" value="#{registroRequest.listarrol()}" var="roles"></f:selectItems>
-                        </h:selectOneMenu>
-                       
+
                         <h:selectOneMenu value="#{administradorView.usuReg.tipoDocumento}" class="form-control">
                             <f:selectItem itemLabel="Cedula" itemValue="Cedula" ></f:selectItem>
                             <f:selectItem itemLabel="Cedula Ex." itemValue="Cedula Ex." ></f:selectItem>
@@ -178,11 +185,11 @@
                         <br/>
                         <h:inputSecret value="#{administradorView.usuReg.clave}" class="form-control" html5:placeholder="Clave"/>
 
-                        
+
                         <h:commandButton action="#{administradorView.registrarUsuario()}" class="btn btn-success btn-block" value=""/>
 
                         <hr/>
-                      
+
 
                     </h:form>
                 </div>
