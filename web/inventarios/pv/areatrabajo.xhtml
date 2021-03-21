@@ -135,27 +135,29 @@
                                         <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
-                                <div class="photo">
-                                    <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="photo">
+                                            <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
 
-                                        <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
+                                                <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
 
-                                    </a>
+                                            </a>
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <div class="col-md-6" style="text-align: center;">
-                                    <h:inputFile id="cargaImagen"   onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}" >
+                                    <h:inputFile style="display: none" id="cargaImagen"   onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}" >
 
                                     </h:inputFile>
-                                    <h:commandButton id="btnCargaImagen"   action="#{categoriasView.accion(productosRequest.id_categoria)}" >
+                                    <h:commandButton  style="display: none" id="btnCargaImagen"   action="#{categoriasView.accion(productosRequest.id_categoria)}" >
                                         <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
                                     </h:commandButton>
 
                                     <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
                                 </div>
 
-                               <div class="modal-footer">
-                                    <h:commandButton   action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
-                               </div>
                             </h:form>     
                         </div>
                     </div>
@@ -530,3 +532,6 @@
     </ui:composition>
 
 </html>
+                               <div class="modal-footer">
+                                    <h:commandButton   action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
+                               </div>

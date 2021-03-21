@@ -61,12 +61,19 @@ public class ProductosRequest implements Serializable{
     }
     
     public void crearProducto(){
+        try {
        
         producto.setFkCategoria(catProductosFacadeLocal.find(id_categoria));
         producto.setImagenRuta(categoriasView.getRutaImg());
         productosFacadeLocal.create(producto);
         listaProductos.add(producto);
-    
+        mensaje = "swal('Registro', 'Exitoso !!!!', 'success');";
+    }catch (Exception e) {
+       mensaje =  "swall('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";
+            
+        }
+        PrimeFaces.current().executeScript(mensaje);
+         
     }
     
     public void eliminarProducto(Productos producto){
