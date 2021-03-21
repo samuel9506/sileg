@@ -231,7 +231,7 @@ public class DetallesSession implements Serializable {
 
         try {
             Map parametro = new HashMap();
-            parametro.put("idFactura",idFactura);
+           
             Connection conec = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sileg", "root", "");
            
             File jasper = new File(context.getRealPath("/WEB-INF/classes/edu/Sileg/reportes/ReporteFactura.jasper"));

@@ -94,7 +94,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -104,16 +104,16 @@
 
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText required="true" class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}"></h:inputText>
-                                        <h:message for="nombre" >falta nombre</h:message>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" html5:required="true"></h:inputText>
+
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}" html5:autofocus="true"></h:inputText>
+                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}" html5:required="true"></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" html5:autofocus="true" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" html5:required="true" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
@@ -135,27 +135,32 @@
                                         <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
-                                <div class="photo">
-                                    <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="photo">
+                                            <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
 
-                                        <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
+                                                <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
 
-                                    </a>
+                                            </a>
+                                        </div>
+
+                                    </div>
                                 </div>
                                 <div class="col-md-6" style="text-align: center;">
-                                    <h:inputFile id="cargaImagen"   onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}" >
+                                    <h:inputFile style="display: none" id="cargaImagen"   onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}" >
 
                                     </h:inputFile>
-                                    <h:commandButton id="btnCargaImagen"   action="#{categoriasView.accion(productosRequest.id_categoria)}" >
+                                    <h:commandButton  style="display: none" id="btnCargaImagen"   action="#{categoriasView.accion(productosRequest.id_categoria)}" >
                                         <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
                                     </h:commandButton>
 
                                     <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
                                 </div>
 
-                               <div class="modal-footer">
-                                    <h:commandButton  onclick="window.location.reload()" action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
-                               </div>
+                                <div class="modal-footer">
+                                    <h:commandButton action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
+                                </div>
                             </h:form>     
                         </div>
                     </div>
