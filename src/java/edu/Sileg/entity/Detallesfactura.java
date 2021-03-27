@@ -46,7 +46,7 @@ public class Detallesfactura implements Serializable {
     @Column(name = "totalunidades")
     private Double totalunidades;
     @JoinColumn(name = "fk_factura", referencedColumnName = "idFactura")
-    @ManyToOne(optional = false, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Factura fkFactura;
     @JoinColumn(name = "fk_productos", referencedColumnName = "idproductos")
     @ManyToOne(fetch = FetchType.EAGER)

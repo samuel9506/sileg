@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -75,7 +76,14 @@ public class DetallesSession implements Serializable {
     private Integer id;
     private Integer idFactura;
     private Productos productoSeleccionado = new Productos();
-
+    private  List<Factura>listaFacturas=new ArrayList();
+    private List<Detallesfactura>listadet=new ArrayList();
+    
+     @PostConstruct
+    public void init(){
+       listaFacturas.addAll(facturaFacadeLocal.findAll());
+    }
+    
     public List<Productos> listarProductos() {
         return productosFacadeLocal.findAll();
     }
@@ -157,9 +165,11 @@ public class DetallesSession implements Serializable {
         for (Detallesfactura d : listaDetalles) {
             d.setFkFactura(factu);
             detallesfacturaFacadeLocal.create(d);
+            
         }
         factu = new Factura();
         listaDetalles = new ArrayList<Detallesfactura>();
+       
 
     }
     
@@ -222,7 +232,14 @@ public class DetallesSession implements Serializable {
         }
         }
      
-      public void descargaCertificado( String idFactura) {
+     public void mostrarDetalles( int idfactura){
+         
+        Factura fac = facturaFacadeLocal.find(idfactura);
+        listadet = fac.getDetalles();
+       
+     }
+     
+      public void descargaCertificado( int idFactu) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         ExternalContext context = facesContext.getExternalContext();
         HttpServletRequest request = (HttpServletRequest) context.getRequest();
@@ -231,10 +248,10 @@ public class DetallesSession implements Serializable {
 
         try {
             Map parametro = new HashMap();
+            parametro.put("idFactu",idFactu);
+            Connection conec = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sileg","root","");
            
-            Connection conec = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sileg", "root", "");
-           
-            File jasper = new File(context.getRealPath("/WEB-INF/classes/edu/Sileg/reportes/ReporteFactura.jasper"));
+            File jasper = new File(context.getRealPath("/WEB-INF/classes/edu/Sileg/reportes/reporteFactura.jasper"));
 
             JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametro, conec);
 
@@ -253,8 +270,9 @@ public class DetallesSession implements Serializable {
         } catch (SQLException q) {
             System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + q.getMessage());
         }
-   
-      }
+
+    }
+      
 
     public Detallesfactura getDetalles() {
         return detalles;
@@ -344,4 +362,25 @@ public class DetallesSession implements Serializable {
         this.productoSeleccionado = productoSeleccionado;
     }
 
-}
+    public List<Factura> getListaFacturas() {
+        return listaFacturas;
+    }
+
+    public void setListaFacturas(List<Factura> listaFacturas) {
+        this.listaFacturas = listaFacturas;
+    }
+
+    public List<Detallesfactura> getListadet() {
+        return listadet;
+    }
+
+    public void setListadet(List<Detallesfactura> listadet) {
+        this.listadet = listadet;
+    }
+
+  
+   
+    }
+    
+
+

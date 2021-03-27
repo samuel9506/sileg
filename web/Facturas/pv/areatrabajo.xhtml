@@ -29,7 +29,7 @@
                                             <h2 id="tabla-categorias">Lista de Facturas</h2>
                                         </div>
                                         <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -38,24 +38,33 @@
                                     <table class="table table-bordered table-hover">
                                         <thead class="text-center">
                                             <tr>
-                                                <th>id Factura</th>
-                                               
+                                                <th>N:Factura</th>
+                                                <th>Fecha Venta</th>
+                                                <th>Nombres</th>
+                                                <th>opciones</th>
+
+
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:forEach items="#{detallesSession.listaDetalles}" var="lis" >
+
+                                            <c:forEach items="#{detallesSession.listaFacturas}" var="fac" >
                                                 <tr>
-                                                    <td>#{lis.iddetalles}</td>
-                                                 
-                                                  <td>
-                                                        <div class="d-flex justify-content-around">
-                                                            <h:form>
-                                                                
-                                                            </h:form>
-                                                        </div>
-                                                    </td>
+                                                    <td>#{fac.idFactura}</td>
+                                                    <td>#{fac.fecha}</td>
+                                                    <td>#{fac.idUsuario.nombres}</td>
+                                                    <h:form>
+                                                        <td><h:commandButton class="btn btn-success " value="Report" action="#{detallesSession.descargaCertificado(fac.idFactura)}"></h:commandButton>  
+                                                            <h:commandButton class="btn btn-warning" value="detalles" html5:data-toggle="modal" html5:data-target="#factudetalles" >
+                                                                <f:ajax execute="@this" event="click" listener="#{detallesSession.mostrarDetalles(fac.idFactura)}" render="detalle"></f:ajax>
+                                                            </h:commandButton>    
+                                                        </td>
+
+                                                    </h:form>
+
                                                 </tr>
                                             </c:forEach>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -66,8 +75,49 @@
                     <!--/tabla categorias -->
                 </div>
             </div>
-            <!-- /.SECCION PRINCIPAL DE TABLAS Y FORMULARIOS -->
-      
+            <!--Modal para traer Detalles-->
+            <div class="container">
+                <div class="row">
+                    <div class="modal fade" id="factudetalles" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Detalles</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <h:panelGroup id="detalle">
+                                    <table class="table table-bordered table-hover">
+                                        <thead class="text-center">
+                                            <tr>
+                                                <th>Nombre Producto</th>
+                                                <th>cantidad</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                                <c:forEach  items="#{detallesSession.listadet}" var="det" >
+                                                <tr>
+                                                    <td>#{det.fkProductos.nombreProducto}</td>
+                                                    <td>#{det.cantidad}</td>
+                                                    <td>#{det.totalunidades}</td>
+                                                </tr>
+                                            </c:forEach>  
+                                           
+                                        </tbody>
+                                    </table>
+                                 </h:panelGroup>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
         </div>
 
 
