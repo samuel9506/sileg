@@ -94,7 +94,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Nuevo Producto</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Creacion de Producto</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -104,12 +104,12 @@
 
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" html5:required="true"></h:inputText>
-
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" html5:required ="true"></h:inputText>
+                                        
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}" html5:required="true"></h:inputText>
+                                        <h:inputText   class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}" html5:required="true"></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
@@ -130,8 +130,8 @@
                                             <h:message for="fecha" ></h:message>
                                         </h:inputText>
                                     </div>
-                                    <h:selectOneMenu id="idCat" class="form-control" value="#{productosRequest.id_categoria}">
-                                        <f:selectItem itemLabel="Seleccione una categoria..." itemValue="null"></f:selectItem>
+                                    <h:selectOneMenu id="idCat" class="form-control" value="#{productosRequest.id_categoria}" required="true" requiredMessage="por favor escoge una categoria">
+                                        <f:selectItem itemLabel="Seleccione una categoria..." noSelectionOption="true" itemValue="null"></f:selectItem>
                                         <f:selectItems  value="#{productosRequest.traeCategoria()}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.idcategoriasProductos}" ></f:selectItems>
                                     </h:selectOneMenu>
                                 </div>
@@ -158,9 +158,6 @@
                                     <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
                                 </div>
 
-                                <div class="modal-footer">
-                                    <h:commandButton action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
-                                </div>
                             </h:form>     
                         </div>
                     </div>
@@ -535,3 +532,6 @@
     </ui:composition>
 
 </html>
+                               <div class="modal-footer">
+                                    <h:commandButton   action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
+                               </div>

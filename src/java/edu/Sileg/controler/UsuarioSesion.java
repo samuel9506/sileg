@@ -68,7 +68,7 @@ public class UsuarioSesion implements Serializable {
 
         try {
             ((HttpSession) ext.getSession(false)).invalidate();
-            ext.redirect(ctxPath + "/index.xhtml");
+            ext.redirect(ctxPath );
         } catch (IOException e) {
             System.out.println("Error UsuarioSesion:cerraSesion " + e.getMessage());
         }
