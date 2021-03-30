@@ -6,6 +6,7 @@
 package edu.Sileg.facade;
 
 import edu.Sileg.entity.Usuario;
+import java.math.BigInteger;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -35,5 +36,7 @@ public interface UsuarioFacadeLocal {
     public Usuario loginUsuario(String correoIn, String claveIn);
 
     public boolean removerUsuario(int id);
+    
+    public Usuario consultar(BigInteger documento);
     
 }

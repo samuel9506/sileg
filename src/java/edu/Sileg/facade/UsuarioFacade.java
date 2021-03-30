@@ -6,6 +6,8 @@
 package edu.Sileg.facade;
 
 import edu.Sileg.entity.Usuario;
+import edu.Sileg.entity.Usuario_;
+import java.math.BigInteger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -30,7 +32,16 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
         super(Usuario.class);
         
     }
-    
+    public Usuario consultar(BigInteger documento){
+        try{
+        Query ud = em.createQuery("SELECT x FROM Usuario x WHERE x.documento = :doc");
+        ud.setParameter("doc",documento);
+        return (Usuario) ud.getSingleResult();
+        }
+        catch(Exception e){
+            return new Usuario();
+        }
+    }
        @Override
     public Usuario recuperarContrasenia(String correoIn) {
         try {

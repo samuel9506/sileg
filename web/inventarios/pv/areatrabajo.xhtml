@@ -105,7 +105,7 @@
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
                                         <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" html5:required ="true"></h:inputText>
-                                        
+
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
@@ -138,9 +138,9 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="photo">
-                                            <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
+                                            <a class="fancybox" >
 
-                                                <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
+                                                <h:graphicImage class="img-responsive" style="display: inherit"  id="imgProducto"  />
 
                                             </a>
                                         </div>
@@ -151,13 +151,15 @@
                                     <h:inputFile style="display: none" id="cargaImagen"   onchange="$('#cargaArchivo\\:btnCargaImagen').click();" value="#{categoriasView.filePart}" >
 
                                     </h:inputFile>
-                                    <h:commandButton  style="display: none" id="btnCargaImagen"   action="#{categoriasView.accion(productosRequest.id_categoria)}" >
+                                    <h:commandButton  style="display: none" id="btnCargaImagen"   action="#{categoriasView.accion(productosRequest.id_categoria)}"  >
                                         <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
                                     </h:commandButton>
 
-                                    <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
+                                    <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-secondary" style="color: white"> carga de Imagen</a>
                                 </div>
-
+                                <div class="modal-footer">
+                                    <h:commandButton   action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
+                                </div>
                             </h:form>     
                         </div>
                     </div>
@@ -173,7 +175,7 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Edicion de un Producto</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -527,11 +529,9 @@
             </div>
         </div>
 
-
-
-    </ui:composition>
-
+        
+</ui:composition>
 </html>
-                               <div class="modal-footer">
-                                    <h:commandButton   action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
-                               </div>
+
+
+
