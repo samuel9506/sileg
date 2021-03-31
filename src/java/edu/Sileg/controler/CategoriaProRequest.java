@@ -48,7 +48,7 @@ public class CategoriaProRequest implements Serializable{
     public void crearProducto() {
        
         try {
-             catProductosFacadeLocal.create(categoria);
+         catProductosFacadeLocal.create(categoria);
         listaCategorias.add(categoria);
         categoria = new CatProductos();
         mensaje =  "swal('Registro Exitoso!', 'Categoria creada!', 'success')";

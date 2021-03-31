@@ -155,9 +155,9 @@
                                         <f:ajax render="imgProducto"   execute="cargaArchivo:idCat cargaArchivo:cargaImagen"></f:ajax>
                                     </h:commandButton>
 
-                                    <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-theme"> Image</a>
+                                    <a onclick="$('#cargaArchivo\\:cargaImagen').click();" class="btn btn-success"> Image</a>
                                 </div>
-
+                                <h:commandButton class="btn btn-secondary" value="Crear" action="#{productosRequest.crearProducto()}" ></h:commandButton>
                             </h:form>     
                         </div>
                     </div>
@@ -532,6 +532,4 @@
     </ui:composition>
 
 </html>
-                               <div class="modal-footer">
-                                    <h:commandButton   action="#{productosRequest.crearProducto()}" value="Crear producto" class="btn btn-secondary" ></h:commandButton>
-                               </div>
+                               
