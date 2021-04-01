@@ -20,7 +20,7 @@ import javax.mail.internet.MimeMessage;
  * @author SENA
  */
 public class Peticion {
-    public static void enviarPeticion(String Asunto, String Mensaje, String correo ) {
+    public static void enviarPeticion(String asunto1, String mensaje1, String correo ) {
         final String user = "licores.sileg365@gmail.com";//cambiará en consecuencia al servidor utilizado
         final String pass = "Figaro01062018";
 
@@ -49,13 +49,13 @@ public class Peticion {
             java.util.Date fecha = new Date();
 
             message.setContent(
-                    "<center>' title='Licores El Gato'></center>"
-                    + "<h3> . "
+                    "<center>' '></center>"
+                    + "<h3> "
                     + "De: " + correo  + "<br/>"
-                    + "Asunto" + Asunto + "<br/>"
-                    + Mensaje
-                    + fecha.getHours() + ":" + fecha.getMinutes() + ":" + fecha.getSeconds() + " - "
-                    + fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getYear(), "text/html");
+                    + "<br/>"
+                    + "Asunto: " + asunto1 + "<br/>"
+                    + "<br/>"
+                    + "Mensaje:" + mensaje1  ,"text/html");
 
             //3rd paso)send message
             Transport.send(message);

@@ -16,6 +16,7 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Objects;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -73,6 +74,19 @@ public class UsuarioSesion implements Serializable {
             System.out.println("Error UsuarioSesion:cerraSesion " + e.getMessage());
         }
 
+    }
+    public boolean sesionIniciada(){
+        
+        return usuLogin.getId() == null ;
+    }
+    
+    
+    public void validarSesion() throws IOException{
+      if(sesionIniciada()){
+          FacesContext fc = FacesContext.getCurrentInstance();
+          ExternalContext ec = fc.getExternalContext();
+          ec.redirect(ec.getRequestContextPath() + "/");
+      }  
     }
     
     public void actualizarMisDatos(){

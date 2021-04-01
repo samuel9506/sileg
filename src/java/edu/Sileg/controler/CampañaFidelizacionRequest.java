@@ -67,7 +67,7 @@ public class CampañaFidelizacionRequest implements Serializable {
     }
     
     public void generarPeticion(){
-        Peticion.enviarPeticion(asunto1, mensaje, correo);
+        Peticion.enviarPeticion( asunto1, mensaje1, correo);
         
     }
     
