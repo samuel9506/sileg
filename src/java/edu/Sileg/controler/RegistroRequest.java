@@ -38,7 +38,7 @@ public class RegistroRequest implements Serializable {
     private int id_rol=0;
     private Integer idrol;
     private ArrayList<Rol> listaroles = new ArrayList<>();
-
+    
     public RegistroRequest() {
 
     }
@@ -52,14 +52,22 @@ public class RegistroRequest implements Serializable {
         String mensajeRequest;
 
         try {
+            
+            Usuario u = usuarioFacadeLocal.consultar(usuReg.getDocumento());
+            if (u.getDocumento() != null ){
+               mensajeRequest = "swal('Verifique sus datos', 'El documento ingresado ya existe', 'error');"; 
+                PrimeFaces.current().executeScript(mensajeRequest);
+                return;
+            }
+            
             usuReg.setFechaRegistro(new Date());
-            Rol selectrol = rolFacadeLocal.find(id_rol);
+            Rol selectrol = rolFacadeLocal.find(3);
             usuReg.setFkRol(selectrol);
             usuarioFacadeLocal.create(usuReg);
             mensajeRequest = "swal('Registro', 'Exitoso !!!!', 'success');";
         } catch (Exception e) {
             System.out.println("Error RegistroRequest:registrarUsuario " + e.getMessage());
-            mensajeRequest = "swal('Verifique sus datos', 'Intente de nuevo', 'error');";
+            mensajeRequest = "swal('Verifique sus datos', 'Correo Invalido', 'error');";
         }
         PrimeFaces.current().executeScript(mensajeRequest);
         usuReg = new Usuario();
