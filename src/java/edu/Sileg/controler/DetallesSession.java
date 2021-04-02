@@ -91,6 +91,11 @@ public class DetallesSession implements Serializable {
     public List<Usuario> listarUsuarios() {
         return usuarioFacadeLocal.findAll();
     }
+    
+    public List<Usuario> listarClientes(){
+          
+       return usuarioFacadeLocal.listaCliente(3);
+    }
 
     public void agregar(Productos producto) {
         productoSeleccionado = producto;

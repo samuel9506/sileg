@@ -322,6 +322,29 @@
                     </div>
 
                 </h:form>
+              <h:form>
+                    <!-- Modal -->
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                     <h4 class="modal-title">Olvido su contraseña ?</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                  
+                                </div>
+                                <div class="modal-body">
+                                    <p>Ingrese el correo para recuperar la contraseña.</p>
+                                    <h:inputText value="#{registroRequest.correoIn}" html5:placeholder="correo" class="form-control placeholder-no-fix"></h:inputText>
+                                </div>
+                                <div class="modal-footer">
+                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                                    <h:commandButton action="#{registroRequest.recuperarClave()}" class="btn btn-theme"  value="Enviar" ></h:commandButton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- modal -->
+                </h:form>
           </div>
         </div>
       </div>

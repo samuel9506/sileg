@@ -39,4 +39,6 @@ public interface UsuarioFacadeLocal {
     
     public Usuario consultar(BigInteger documento);
     
+    public List<Usuario> listaCliente (int fk_rol);
+    
 }

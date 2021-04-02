@@ -6,8 +6,8 @@
 package edu.Sileg.facade;
 
 import edu.Sileg.entity.Usuario;
-import edu.Sileg.entity.Usuario_;
 import java.math.BigInteger;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -77,5 +77,16 @@ public class UsuarioFacade extends AbstractFacade<Usuario> implements UsuarioFac
             return retorno;
         }
     }
+    
+     @Override
+    public List<Usuario> listaCliente (int fk_rol){
+        Query qt = em.createQuery(" SELECT u FROM Usuario u WHERE u.fkRol.idrol = :fkRol");
+        qt.setParameter("fkRol",fk_rol);
+        
+         return qt.getResultList() ;  
+    }
+            
+            
+   
     
 }
