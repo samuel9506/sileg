@@ -29,7 +29,9 @@
                                             <h2 id="tabla-categorias">Lista de Facturas</h2>
                                         </div>
                                         <div class="col-12 col-sm-6 d-flex align-items-center justify-content-md-end">
-
+                                            <h:form>
+                                            <h:commandButton value="Reportes" class="btn btn-primary " action="#{detallesSession.descargaListado()}" ></h:commandButton>
+                                            </h:form>
                                         </div>
                                     </div>
                                 </div>
@@ -54,7 +56,7 @@
                                                     <td>#{fac.fecha}</td>
                                                     <td>#{fac.idUsuario.nombres}</td>
                                                     <h:form>
-                                                        <td><h:commandButton class="btn btn-success " value="Report" action="#{detallesSession.descargaCertificado(fac.idFactura)}"></h:commandButton>  
+                                                        <td><h:commandButton class="btn btn-danger " value="Report" action="#{detallesSession.descargaCertificado(fac.idFactura)}"></h:commandButton>  
                                                             <h:commandButton class="btn btn-warning" value="detalles" html5:data-toggle="modal" html5:data-target="#factudetalles" >
                                                                 <f:ajax execute="@this" event="click" listener="#{detallesSession.mostrarDetalles(fac.idFactura)}" render="detalle"></f:ajax>
                                                             </h:commandButton>    
