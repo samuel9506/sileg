@@ -43,7 +43,8 @@
                                                 <th>N:Factura</th>
                                                 <th>Fecha Venta</th>
                                                 <th>Nombres</th>
-                                                <th>opciones</th>
+                                                <th>Total</th>
+                                                <th>Opciones</th>
 
 
                                             </tr>
@@ -54,12 +55,16 @@
                                                 <tr>
                                                     <td>#{fac.idFactura}</td>
                                                     <td>#{fac.fecha}</td>
-                                                    <td>#{fac.idUsuario.nombres}</td>
-                                                    <h:form>
-                                                        <td><h:commandButton class="btn btn-danger " value="Report" action="#{detallesSession.descargaCertificado(fac.idFactura)}"></h:commandButton>  
-                                                            <h:commandButton class="btn btn-warning" value="detalles" html5:data-toggle="modal" html5:data-target="#factudetalles" >
-                                                                <f:ajax execute="@this" event="click" listener="#{detallesSession.mostrarDetalles(fac.idFactura)}" render="detalle"></f:ajax>
-                                                            </h:commandButton>    
+                                                    <td>#{fac.idUsuario.nombres} #{fac.idUsuario.apellidos}</td>
+                                                    <td>#{fac.total}</td>
+                                                    
+                                                    <h:form id="listaFacturas">
+                                                        <td><h:commandButton style="display: none" id="tb"  action="#{detallesSession.descargaCertificado(fac.idFactura)}"></h:commandButton>  
+                                                            <h:commandButton  class="btn btn-warning" id="tbl" html5:data-toggle="modal" html5:data-target="#factudetalles" value="Detalles" >
+                                                                <f:ajax  listener="#{detallesSession.mostrarDetalles(fac.idFactura)}" render="detalle"></f:ajax> 
+                                                            </h:commandButton>  
+                                                            
+                                                            <button type="button" onclick="$('#listaFacturas\\:tb').click()" class="btn btn-danger"><i class="	fas fa-file-download"></i></button>
                                                         </td>
 
                                                     </h:form>
