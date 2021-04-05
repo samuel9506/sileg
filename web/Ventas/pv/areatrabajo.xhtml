@@ -72,6 +72,7 @@
                                             <br></br>
                                             
                                             <h:selectOneMenu value="#{detallesSession.id}">
+                                                <f:selectItem itemLabel="Seleccione Nombre cliente" itemValue="null"></f:selectItem>
                                                 <f:selectItems 
                                                     value="#{detallesSession.listarClientes()}" 
                                                     var="usuario" 
