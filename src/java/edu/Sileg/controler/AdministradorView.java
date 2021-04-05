@@ -15,6 +15,7 @@ import edu.Sileg.facade.UsuarioFacadeLocal;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.inject.Named;
@@ -52,6 +53,10 @@ public class AdministradorView implements Serializable {
     @PostConstruct
     public void cargaUsuarios() {
         listaUsuarios.addAll(usuarioFacadeLocal.findAll());
+    }
+    
+     public List<Rol> listarrol() {
+      return rolFacadeLocal.findAll();
     }
 
     public void removerUsuario(Usuario usuario) {

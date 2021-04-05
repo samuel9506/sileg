@@ -1,4 +1,4 @@
-/*
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -81,6 +81,7 @@ public class ProductosRequest implements Serializable{
         productosFacadeLocal.remove(producto);
         listaProductos.remove(producto); 
         }catch (Exception e) {
+        e.printStackTrace();
        mensaje =  "swall('Algo inesperado sucedio!', 'este producto no puede ser eliminado!', 'Intenta eliminar un producto que no este asociado a las ventas')";
             
         }
@@ -95,10 +96,19 @@ public class ProductosRequest implements Serializable{
     }
     
     public void actualizarProducto(){
+      String  mensajeAlerta="";
+       
+       try{ 
         productoEditar.setFkCategoria(catProductosFacadeLocal.find(idCategoria));
         productosFacadeLocal.edit(productoEditar);
         listaProductos.clear();
         listaProductos.addAll(productosFacadeLocal.findAll());
+        
+         mensajeAlerta = "swal('Actualizado el Producto', 'success');";
+        } catch (Exception e) {
+         mensajeAlerta = "swal('Problemas Actualizando a ','error');";
+        }
+        PrimeFaces.current().executeScript(mensajeAlerta);
     }
     
     public  void prueba() {

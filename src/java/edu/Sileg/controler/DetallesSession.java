@@ -203,6 +203,13 @@ public class DetallesSession implements Serializable {
         }
         PrimeFaces.current().executeScript(message);
       }
+      
+      public void mostrarDetalles( int idfactura){
+         
+        Factura fac = facturaFacadeLocal.find(idfactura);
+        listadet = fac.getDetalles();
+       
+     }
     
      public void descargaListado() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -236,13 +243,41 @@ public class DetallesSession implements Serializable {
             System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + q.getMessage());
         }
         }
+            
      
-     public void mostrarDetalles( int idfactura){
-         
-        Factura fac = facturaFacadeLocal.find(idfactura);
-        listadet = fac.getDetalles();
-       
-     }
+     public void descagargaEstadistica() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext context = facesContext.getExternalContext();
+        HttpServletRequest request = (HttpServletRequest) context.getRequest();
+        HttpServletResponse response = (HttpServletResponse) context.getResponse();
+        response.setContentType("application/pdf");
+
+        try {
+            Map parametro = new HashMap();
+            
+            Connection conec = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/sileg", "root","");
+           
+            File jasper = new File(context.getRealPath("/WEB-INF/classes/edu/Sileg/reportes/reporte.jasper"));
+
+            JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametro, conec);
+
+            HttpServletResponse hsr = (HttpServletResponse) context.getResponse();
+            hsr.addHeader("Content-disposition", "attachment; filename=reporteestasdistico.pdf");
+            OutputStream os = hsr.getOutputStream();
+            JasperExportManager.exportReportToPdfStream(jp, os);
+            os.flush();
+            os.close();
+            facesContext.responseComplete();
+
+        } catch (JRException e) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + e.getMessage());
+        } catch (IOException i) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + i.getMessage());
+        } catch (SQLException q) {
+            System.out.println("edu.webapp1966781b.controlador.AdministradorView.descargaReporte() " + q.getMessage());
+        }
+        }
+    
      
       public void descargaCertificado( int idFactu) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -261,7 +296,7 @@ public class DetallesSession implements Serializable {
             JasperPrint jp = JasperFillManager.fillReport(jasper.getPath(), parametro, conec);
 
             HttpServletResponse hsr = (HttpServletResponse) context.getResponse();
-            hsr.addHeader("Content-disposition", "attachment; filename=CertificadoIndividual.pdf");
+            hsr.addHeader("Content-disposition", "attachment; filename=Recibodepago.pdf");
             OutputStream os = hsr.getOutputStream();
             JasperExportManager.exportReportToPdfStream(jp, os);
             os.flush();

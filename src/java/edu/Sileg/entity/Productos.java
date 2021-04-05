@@ -62,9 +62,9 @@ public class Productos implements Serializable {
     @Column(name = "fechacompra")
     @Temporal(TemporalType.DATE)
     private Date fechacompra;
+    @Size(max = 20)
     @Column(name = "fechavenc")
-    @Temporal(TemporalType.DATE)
-    private Date fechavenc;
+    private String fechavenc;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precioVenta")
     private Double precioVenta;
@@ -126,11 +126,11 @@ public class Productos implements Serializable {
         this.fechacompra = fechacompra;
     }
 
-    public Date getFechavenc() {
+    public String getFechavenc() {
         return fechavenc;
     }
 
-    public void setFechavenc(Date fechavenc) {
+    public void setFechavenc(String fechavenc) {
         this.fechavenc = fechavenc;
     }
 
