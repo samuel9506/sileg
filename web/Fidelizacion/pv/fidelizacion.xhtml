@@ -9,9 +9,6 @@
     <ui:composition>
         <div class="wrapper">
 
-            <h:form>
-                <h:commandButton action="#{correoMasivoRequest.envioCorreos()}" value="Envio Informacion"   class="btn btn-primary btn-lg" style="margin-left: 1000px"  ></h:commandButton>
-            </h:form>
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -21,6 +18,9 @@
                         <div class="row mb-2">
                             <div class="col-sm-6">
                                 <h1 class="m-0 text-dark">Crear Campaña</h1>
+                                
+                                    <button class="btn btn-danger" data-toggle="modal" data-target="#informacion" style="margin-top: 20px">envio informacion</button>
+                                
                             </div><!-- /.col -->
                         </div><!-- /.row -->
                     </div><!-- /.container-fluid -->
@@ -35,6 +35,7 @@
                                 <div class="card">
                                     <div class="card-body register-card-body">
                                         <p class="login-box-msg">Registrar una nueva campaña</p>
+
 
 
                                         <h:form>
@@ -79,7 +80,7 @@
                                             <!-- fechas -->
                                             <div class="row">
                                                 <div class="col">
-                                                    <p>Start date</p>
+
                                                     <div class="input-group mb-3">
                                                         <h:inputText  value="#{campañaFidelizacionRequest.camfid.fechaInicio}" class="form-control"  html5:placeholder="fecha inicio"></h:inputText>
                                                         <div class="input-group-append">
@@ -92,7 +93,7 @@
                                             </div>
                                             <div class="row">
                                                 <div class="col">
-                                                    <p>end date</p>
+
                                                     <div class="input-group mb-3">
                                                         <h:inputText  value="#{campañaFidelizacionRequest.camfid.fechaFinal}" class="form-control"  html5:placeholder="fecha finalizacion"></h:inputText>
                                                         <div class="input-group-append">
@@ -227,7 +228,7 @@
                                                         <!-- fechas -->
                                                         <div class="row">
                                                             <div class="col">
-                                                                <p>Start date</p>
+                                                                
                                                                 <div class="input-group mb-3">
                                                                     <h:inputText  value="#{campañaFidelizacionRequest.campfidEditar.fechaInicio}" class="form-control"  html5:placeholder="fecha inicio"></h:inputText>
                                                                     <div class="input-group-append">
@@ -259,6 +260,46 @@
                                                         </div>
                                                         <!-- fin  -->
                                                     </h:form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--modal de correo masivo-->
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="modal fade" id="informacion" tabindex="-1" role="dialog"
+                                         aria-labelledby="responder" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h2 class="modal-tittle">
+                                                        Campañas 
+                                                        <i class="fas fa-reply-all"></i>
+                                                    </h2>
+                                                    <button class="close" data-dismiss="modal" aria-label="cerrar">
+                                                        <!-- <span aria-hidden="true">&times;</span>-->
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h:form>
+                                                    
+                                                    <p>Asunto.</p>
+                                                    <h:inputText value="#{campañaFidelizacionRequest.asunto1}" html5:placeholder="Describe el asunto" class="form-control placeholder-no-fix"></h:inputText>
+
+                                                    <p>Mensaje.</p>
+                                                    <h:inputTextarea value="#{campañaFidelizacionRequest.mensaje1}" html5:placeholder="Describe brevemente tu peticion" class="form-control placeholder-no-fix" cols="4" rows="4"></h:inputTextarea>
+                                    
+                                                    <div class="modal-footer">
+                                                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                                                    <h:commandButton action="#{correoMasivoRequest.envioCorreos()}" value="Envio Informacion"   class="btn btn-primary "></h:commandButton>
+                                                    </div>
+                                                    </h:form>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
