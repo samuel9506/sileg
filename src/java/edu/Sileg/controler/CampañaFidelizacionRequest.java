@@ -7,6 +7,7 @@ package edu.Sileg.controler;
 
 import edu.Sileg.entity.Campañasfidelizacion;
 import edu.Sileg.facade.CampañasfidelizacionFacadeLocal;
+import edu.Sileg.utilidades.Email;
 import edu.Sileg.utilidades.Peticion;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -43,6 +44,7 @@ public class CampañaFidelizacionRequest implements Serializable {
     
     
     
+    
     @PostConstruct
     
     public void ini(){
@@ -70,6 +72,7 @@ public class CampañaFidelizacionRequest implements Serializable {
         Peticion.enviarPeticion( asunto1, mensaje1, correo);
         
     }
+    
     
     
     
@@ -150,5 +153,7 @@ public class CampañaFidelizacionRequest implements Serializable {
     public void setMensaje1(String mensaje1) {
         this.mensaje1 = mensaje1;
     }
+
+  
     
 }
