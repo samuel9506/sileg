@@ -3,10 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/UsuarioSesion.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Facturas/pv/areatrabajo.xhtml</file>
             <file>file:/C:/Users/Samuel/Documents/sileg/web/Ventas/pv/areatrabajo.xhtml</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/index.xhtml</file>
-            <file>file:/C:/Users/Samuel/Documents/sileg/web/WEB-INF/template/maqueta_1.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Fidelizacion/pv/fidelizacion.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/CategoriasView.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/WEB-INF/template/header.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Administrador/pv/areatrabajo.xhtml</file>
             <file>file:/C:/Users/Samuel/Documents/sileg/web/inventarios/pv/areatrabajo.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/RegistroRequest.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/Administrador/index.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/registro/registro.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/web/usuarios/pv/areatrabajo.xhtml</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/utilidades/Peticion.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/AdministradorView.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/utilidades/Email.java</file>
+            <file>file:/C:/Users/Samuel/Documents/sileg/src/java/edu/Sileg/controler/ProductosRequest.java</file>
         </group>
     </open-files>
 </project-private>

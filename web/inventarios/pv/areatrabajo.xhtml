@@ -104,28 +104,28 @@
 
                                     <div class="form-group">
                                         <h:outputLabel for="nombre" value="nombres"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" required ="true"></h:inputText>
+                                        <h:inputText  class="form-control" id="nombre" value="#{productosRequest.producto.nombreProducto}" ></h:inputText>
 
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="prv" value="precio venta"></h:outputLabel>
-                                        <h:inputText   class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}" required="true"></h:inputText>
+                                        <h:inputText   class="form-control" id="prv" value="#{productosRequest.producto.precioVenta}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="stk" value="stock"></h:outputLabel>
-                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" required="true" ></h:inputText>
+                                        <h:inputText  class="form-control" id="stk" value="#{productosRequest.producto.existencias}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="pres" value="presentacion"></h:outputLabel>
-                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.producto.presentacion}" required="true" ></h:inputText>
+                                        <h:inputText class="form-control" id="pres" value="#{productosRequest.producto.presentacion}" ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="preco" value="precio compra"></h:outputLabel>
-                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.producto.precioCompra}" required="true" ></h:inputText>
+                                        <h:inputText class="form-control" id="preco" value="#{productosRequest.producto.precioCompra}"  ></h:inputText>
                                     </div>
                                     <div class="form-group">
                                         <h:outputLabel for="fecha" value="fecha vencimiento"></h:outputLabel>
-                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.producto.fechavenc}" required="true" ></h:inputText>
+                                        <h:inputText class="form-control" id="fecha" value="#{productosRequest.producto.fechavenc}"  ></h:inputText>
                                     </div>
                                     <h:selectOneMenu id="idCat" class="form-control" value="#{productosRequest.id_categoria}" >
                                         <f:selectItem itemLabel="Seleccione una categoria..." noSelectionOption="true" itemValue="null"></f:selectItem>
@@ -136,20 +136,7 @@
                                 <div class="row">
                                 <div class="col-md-6">
 
-                                    <div class="project-wrapper">
-                                        <div class="project">
-                                            <div class="photo-wrapper">
-                                                <div class="photo">
-                                                    <a class="fancybox" href="#{request.contextPath}/images/#{categoriasView.rutaImg}">
-
-                                                        <h:graphicImage class="img-responsive" style="display: inherit" id="imgProducto" value="/images/#{categoriasView.rutaImg}" />
-
-                                                    </a>
-                                                </div>
-                                                <div class="overlay"></div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                   
 
                                 </div>
                                 <div class="col-md-6" style="text-align: center;">
